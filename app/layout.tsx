@@ -3,8 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 // Components
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 // Providers
@@ -31,11 +29,7 @@ export default function RootLayout({
             <body className={inter.className}>
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
                     <TooltipProvider>
-                        <Navbar />
-
                         {children}
-
-                        <Footer />
                     </TooltipProvider>
                 </ThemeProvider>
             </body>

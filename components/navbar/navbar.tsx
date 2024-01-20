@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 // Components
-import MainNav from "@/components/main-nav";
+import MainNav from "@/components/navbar/main-nav";
 import Container from "@/components/container";
-import NavbarActions from "@/components/navbar-actions";
+import NavbarActions from "@/components/navbar/navbar-actions";
 
 const Navbar = () => {
     const categories = ["Guitar", "Bass", "Drum", "Keyboard", "Accessories"];
