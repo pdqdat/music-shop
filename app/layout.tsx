@@ -7,6 +7,9 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
+// Providers
+import { ThemeProvider } from "@/providers/theme-provider";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,14 +24,20 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
+            <head>
+                <link rel="icon" href="/favicon.ico" sizes="any" />
+            </head>
+
             <body className={inter.className}>
-                <TooltipProvider>
-                    <Navbar />
+                <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+                    <TooltipProvider>
+                        <Navbar />
 
-                    {children}
+                        {children}
 
-                    <Footer />
-                </TooltipProvider>
+                        <Footer />
+                    </TooltipProvider>
+                </ThemeProvider>
             </body>
         </html>
     );
