@@ -4,6 +4,7 @@ import "./globals.css";
 
 // Components
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/sonner"
 
 // Providers
 import { ThemeProvider } from "@/providers/theme-provider";
@@ -30,6 +31,8 @@ export default function RootLayout({
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
                     <TooltipProvider>
                         {children}
+
+                        <Toaster />
                     </TooltipProvider>
                 </ThemeProvider>
             </body>
