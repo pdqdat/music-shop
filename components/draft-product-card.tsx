@@ -1,25 +1,22 @@
 "use client";
 
+import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import { MouseEventHandler } from "react";
-import { useRouter } from "next/navigation";
-
-// Icons
 import { Expand, ShoppingCart } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 // Types
 import { Product } from "@/types";
 
 // Components
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "./ui/card";
-import Currency from "@/components/currency";
 
-interface ProductCard {
+interface DraftProductCard {
     data: Product;
 }
 
-const ProductCard: React.FC<ProductCard> = ({ data }) => {
+const DraftProductCard: React.FC<DraftProductCard> = ({ data }) => {
     const router = useRouter();
 
     const handleClick = () => {
@@ -36,7 +33,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
 
     return (
         <Card onClick={handleClick}>
-            <CardContent className="group cursor-pointer space-y-4 p-3">
+            <CardContent className="flex flex-col justify-between space-y-4 p-3">
                 {/* Image & actions */}
                 <div className="relative aspect-square overflow-hidden rounded-lg border">
                     <Image
@@ -48,19 +45,11 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
 
                     <div className="absolute bottom-5 w-full px-6 opacity-0 transition duration-300 ease-in-out group-hover:opacity-100">
                         <div className="flex justify-center gap-x-6">
-                            <Button
-                                onClick={onPreview}
-                                variant="secondary"
-                                size="icon"
-                            >
+                            <Button onClick={onPreview}>
                                 <Expand size={20} />
                             </Button>
 
-                            <Button
-                                onClick={onAddToCart}
-                                size="icon"
-                                className="hover:scale-110"
-                            >
+                            <Button onClick={onAddToCart}>
                                 <ShoppingCart size={20} />
                             </Button>
                         </div>
@@ -78,11 +67,11 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
                 </div>
 
                 <div className="flex items-center justify-between">
-                    <Currency value={data?.price} />
+                    <p className="text-xl">{data?.price}</p>
                 </div>
             </CardContent>
         </Card>
     );
 };
 
-export default ProductCard;
+export default DraftProductCard;

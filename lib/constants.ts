@@ -54,4 +54,29 @@ export const products: Product[] = [
             name: "Electric Guitar",
         },
     },
+    {
+        id: "3",
+        name: "Fender",
+        price: 999,
+        images: [
+            {
+                url: "/fender/fender1.png",
+            },
+            {
+                url: "/fender/fender2.png",
+            },
+            {
+                url: "/fender/fender3.png",
+            },
+            {
+                url: "/fender/fender4.png",
+            },
+            {
+                url: "/fender/fender5.png",
+            },
+        ],
+        department: {
+            name: "Electric Guitar",
+        },
+    },
 ];
