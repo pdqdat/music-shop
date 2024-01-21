@@ -1,19 +1,20 @@
 import Link from "next/link";
 
+// Constants
+import { categories } from "@/lib/constants";
+
 // Components
 import MainNav from "@/components/navbar/main-nav";
 import Container from "@/components/container";
 import NavbarActions from "@/components/navbar/navbar-actions";
 
 const Navbar = () => {
-    const categories = ["Guitar", "Bass", "Drum", "Keyboard", "Accessories"];
-
     return (
         <div className="border-b">
             <Container>
-                <div className="relative px-4 sm:px-6 lg:px-8 flex h-16 items-center">
-                    <Link href="/" className="ml-4 flex lg:ml-0 gap-x-2">
-                        <p className="font-bold text-xl">DC MUSIC</p>
+                <div className="relative flex h-16 items-center px-4 sm:px-6 lg:px-8">
+                    <Link href="/" className="ml-4 flex gap-x-2 lg:ml-0">
+                        <p className="text-xl font-bold">DC MUSIC</p>
                     </Link>
 
                     <MainNav data={categories} />

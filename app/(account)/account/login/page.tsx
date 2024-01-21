@@ -1,52 +1,69 @@
+"use client";
+
 import Link from "next/link";
+import { useTheme } from "next-themes";
 
 // Components
-import { UserAuthForm } from "../../../../components/user-auth-form";
+import { LoginForm } from "../../../../components/forms/login-form";
 import { Button } from "@/components/ui/button";
 
 const LoginPage = () => {
+    const { theme } = useTheme();
+
     return (
-        <>
-            <div className="relative flex h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
-                <div className="absolute left-4 top-4 z-20 text-lg font-medium text-foreground md:left-8 md:top-8 lg:text-background">
-                    <Link href="/">DC Music</Link>
+        <div className="relative grid h-screen grid-cols-1 lg:grid-cols-2">
+            {/* Div that contains the background image */}
+            <div className="relative hidden h-full w-full lg:block">
+                <img
+                    src={
+                        theme === "light"
+                            ? "/light-cover.jpg"
+                            : "/dark-cover.jpg"
+                    }
+                    alt="Music space"
+                    className="absolute left-0 top-0 h-full w-full object-cover"
+                />
+
+                <div className="absolute top-8 left-8 z-20 text-white">
+                    <blockquote className="space-y-2">
+                        <p className="text-lg">
+                            &ldquo;One good thing about music, when it hits you,
+                            you fell no pain.&rdquo;
+                        </p>
+
+                        <footer className="text-sm">Bob Marley</footer>
+                    </blockquote>
                 </div>
+            </div>
 
-                <Link
-                    href="/account/register"
-                    className="absolute right-4 top-4 md:right-8 md:top-8"
-                >
-                    <Button>Create an account</Button>
-                </Link>
+            {/* Div that contains the register form */}
+            <div className="relative flex items-center justify-center">
+                {/* Logo & Log in button container */}
+                <div className="absolute top-4 z-20 flex w-full items-center justify-between px-8 lg:top-8">
+                    <Link href="/">
+                        <p className="text-xl font-bold">DC MUSIC</p>
+                    </Link>
 
-                <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
-                    <div className="absolute inset-0 bg-zinc-600 dark:bg-zinc-900" />
-
-                    <div className="relative z-20 mt-auto">
-                        <blockquote className="space-y-2">
-                            <p className="text-lg">
-                                &ldquo;One good thing about music, when it hits
-                                you, you fell no pain.&rdquo;
-                            </p>
-
-                            <footer className="text-sm">Bob Marley</footer>
-                        </blockquote>
-                    </div>
+                    <Link href="/account/register">
+                        <Button variant="secondary" className="animate-bounce">
+                            Create an account
+                        </Button>
+                    </Link>
                 </div>
 
                 <div className="p-4 lg:p-8">
                     <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
                         <div className="flex flex-col space-y-2 text-center">
                             <h1 className="text-2xl font-semibold uppercase tracking-tight">
-                                Account log in
+                                Register
                             </h1>
                             <p className="text-sm text-muted-foreground">
-                                You need an account to make purchases or check
+                                Create a new account to make purchases or check
                                 your order history.
                             </p>
                         </div>
 
-                        <UserAuthForm />
+                        <LoginForm />
 
                         <p className="px-8 text-center text-sm text-muted-foreground">
                             By clicking continue, you agree to our{" "}
@@ -68,7 +85,7 @@ const LoginPage = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
