@@ -26,7 +26,7 @@ import {
 import { toast } from "sonner";
 
 // States
-import useUserStore from "@/states/useUserStore";
+import useUserStore from "@/hooks/use-user";
 
 interface RegisterFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 // Constants
-import { categories } from "@/lib/constants";
+import { departments } from "@/lib/constants";
 
 // Components
 import MainNav from "@/components/navbar/main-nav";
@@ -17,7 +17,7 @@ const Navbar = () => {
                         <p className="text-xl font-bold">DC MUSIC</p>
                     </Link>
 
-                    <MainNav data={categories} />
+                    <MainNav data={departments} />
 
                     <NavbarActions />
                 </div>

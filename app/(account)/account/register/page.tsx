@@ -72,14 +72,14 @@ const RegisterPage = () => {
                     className="absolute left-0 top-0 h-full w-full object-cover"
                 />
 
-                <div className="absolute right-8 top-8 z-20 text-white">
+                <div className="absolute right-8 top-8 z-20 text-white dark:left-8">
                     <blockquote className="space-y-2">
                         <p className="text-lg">
                             &ldquo;Without music, life would be a
                             mistake.&rdquo;
                         </p>
 
-                        <footer className="text-right text-sm">
+                        <footer className="text-right text-sm dark:text-left">
                             Friedrich Nietzsche
                         </footer>
                     </blockquote>

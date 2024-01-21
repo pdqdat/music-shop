@@ -15,11 +15,18 @@ import { Loader2 } from "lucide-react";
 // Components
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form";
 import { toast } from "sonner";
 
 // States
-import useUserStore from "@/states/useUserStore";
+import useUserStore from "@/hooks/use-user";
 
 interface LoginFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -79,7 +86,10 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
     return (
         <div className={cn("grid gap-6", className)} {...props}>
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
+                <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="grid gap-4"
+                >
                     <FormField
                         control={form.control}
                         name="email"
@@ -110,7 +120,11 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
                                 <FormLabel>Password</FormLabel>
 
                                 <FormControl>
-                                    <Input {...field} type="password" disabled={isLoading} />
+                                    <Input
+                                        {...field}
+                                        type="password"
+                                        disabled={isLoading}
+                                    />
                                 </FormControl>
 
                                 <FormMessage />
@@ -119,7 +133,9 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
                     />
 
                     <Button type="submit" disabled={isLoading}>
-                        {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                        {isLoading && (
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        )}
                         Log in with email
                     </Button>
                 </form>
@@ -131,7 +147,9 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
                 </div>
 
                 <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
+                    <span className="bg-background px-2 text-muted-foreground">
+                        Or continue with
+                    </span>
                 </div>
             </div>
 
