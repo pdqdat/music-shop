@@ -10,6 +10,9 @@ import { Expand, ShoppingCart } from "lucide-react";
 // Types
 import { Product } from "@/types";
 
+// Constants
+import { campaigns } from "@/lib/constants";
+
 // Components
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "./ui/card";
@@ -34,6 +37,14 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
         event.stopPropagation();
     };
 
+    // Find the January Sale campaign
+    const januarySaleCampaign = campaigns.find(
+        (campaign) => campaign.id === "1",
+    );
+
+    // Check if the product is in the January Sale campaign
+    const isInJanuarySale = januarySaleCampaign?.productID.includes(data.id);
+
     return (
         <Card
             onClick={handleClick}
@@ -42,6 +53,13 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
             <CardContent className="space-y-4 p-3">
                 {/* Image & actions */}
                 <div className="relative aspect-square overflow-hidden rounded-xl border">
+                    {/* Campaign tag */}
+                    {isInJanuarySale && (
+                        <div className="absolute -right-12 -top-12 z-20 flex aspect-square w-24 rotate-45 items-end justify-center bg-primary text-sm font-medium text-black">
+                            Jan Sale
+                        </div>
+                    )}
+
                     <Image
                         src={data.images?.[0]}
                         alt="Product image"
@@ -85,7 +103,15 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
 
             {/* Price */}
             <CardFooter className="flex items-center justify-between p-3">
-                <Currency value={data?.price} />
+                <Currency value={data?.price} className="text-lg" />
+
+                {/* Pre-sale price */}
+                {isInJanuarySale && (
+                    <Currency
+                        value={data?.price + 100}
+                        className="text-lg text-muted-foreground line-through"
+                    />
+                )}
             </CardFooter>
         </Card>
     );
