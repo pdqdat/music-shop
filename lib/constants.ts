@@ -1,13 +1,13 @@
 import { Product, Campaigns, Department } from "@/types";
 
 export const departments: Department[] = [
-    { id: '1', name: "Guitar" },
-    { id: '2', name: "Electric Guitar" },
-    { id: '3', name: "Bass" },
-    { id: '4', name: "Drum" },
-    { id: '5', name: "Keyboard" },
-    { id: '6', name: "Accessories" },
-    { id: '7', name: "DJ" },
+    { id: "1", name: "Guitar" },
+    { id: "2", name: "Electric Guitar" },
+    { id: "3", name: "Bass" },
+    { id: "4", name: "Drum" },
+    { id: "5", name: "Keyboard" },
+    { id: "6", name: "Accessories" },
+    { id: "7", name: "DJ" },
 ];
 
 export const products: Product[] = [
@@ -21,8 +21,10 @@ export const products: Product[] = [
             "/taylor/taylor3.png",
         ],
         department: {
-            id: '1', name: "Guitar"
+            id: "1",
+            name: "Guitar",
         },
+        stock: 20,
     },
     {
         id: "2",
@@ -36,8 +38,10 @@ export const products: Product[] = [
             "/fender/fender5.png",
         ],
         department: {
-            id: '2', name: "Electric Guitar"
+            id: "2",
+            name: "Electric Guitar",
         },
+        stock: 20,
     },
     {
         id: "3",
@@ -51,8 +55,10 @@ export const products: Product[] = [
             "/pioneer/pioneer5.png",
         ],
         department: {
-            id: '7', name: "DJ"
+            id: "7",
+            name: "DJ",
         },
+        stock: 20,
     },
     {
         id: "4",
@@ -65,8 +71,27 @@ export const products: Product[] = [
             "/fenderA/fenderA4.png",
         ],
         department: {
-            id: '2', name: "Electric Guitar"
+            id: "2",
+            name: "Electric Guitar",
         },
+        stock: 20,
+    },
+    {
+        id: "5",
+        name: "Yamaha YC61 Stage Keyboard and Drawbar Organ",
+        price: 1499,
+        images: [
+            "/keyboard/keyboard1.png",
+            "/keyboard/keyboard2.png",
+            "/keyboard/keyboard3.png",
+            "/keyboard/keyboard4.png",
+            "/keyboard/keyboard5.png",
+        ],
+        department: {
+            id: "5",
+            name: "Keyboard",
+        },
+        stock: 0,
     },
 ];
 

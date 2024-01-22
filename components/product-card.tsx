@@ -19,6 +19,7 @@ import useCart from "@/hooks/use-cart";
 // Components
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "./ui/card";
+import { Badge } from "@/components/ui/badge";
 import Currency from "@/components/currency";
 
 interface ProductCard {
@@ -88,6 +89,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
                                 onClick={onAddToCart}
                                 size="icon"
                                 className="hover:scale-110"
+                                disabled={data.stock === 0}
                             >
                                 <ShoppingCart size={20} />
                             </Button>
@@ -108,16 +110,26 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
             </CardContent>
 
             {/* Price */}
-            <CardFooter className="flex items-center justify-between p-3">
-                <Currency value={data?.price} className="text-lg" />
-
-                {/* Pre-sale price */}
-                {isInJanuarySale && (
-                    <Currency
-                        value={data?.price + 100}
-                        className="text-lg text-muted-foreground line-through"
-                    />
+            <CardFooter className="flex-col p-3">
+                {data?.stock !== 0 ? (
+                    <Badge className="mb-2 text-sm">In stock</Badge>
+                ) : (
+                    <Badge className="mb-2 text-sm" variant="destructive">
+                        Out of stock
+                    </Badge>
                 )}
+
+                <div className="flex w-full items-center justify-between border-t pt-2">
+                    <Currency value={data?.price} className="text-lg" />
+
+                    {/* Pre-sale price */}
+                    {isInJanuarySale && (
+                        <Currency
+                            value={data?.price + 100}
+                            className="text-lg text-muted-foreground line-through"
+                        />
+                    )}
+                </div>
             </CardFooter>
         </Card>
     );

@@ -9,6 +9,7 @@ export interface Product {
     price: number;
     images: string[];
     department: Department;
+    stock: number;
 }
 
 export interface Campaigns {

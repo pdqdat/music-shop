@@ -50,7 +50,7 @@ const CartSummary = () => {
                 className="mt-6 w-full"
             >
                 {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Checkout
+                Go to Checkout
             </Button>
         </div>
     );
