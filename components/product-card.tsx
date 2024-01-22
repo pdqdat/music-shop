@@ -13,6 +13,9 @@ import { Product } from "@/types";
 // Constants
 import { campaigns } from "@/lib/constants";
 
+// Hooks
+import useCart from "@/hooks/use-cart";
+
 // Components
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "./ui/card";
@@ -24,6 +27,7 @@ interface ProductCard {
 
 const ProductCard: React.FC<ProductCard> = ({ data }) => {
     const router = useRouter();
+    const cart = useCart();
 
     const handleClick = () => {
         router.push(`/product/${data?.id}`);
@@ -35,6 +39,8 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
 
     const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
         event.stopPropagation();
+
+        cart.addItem(data);
     };
 
     // Find the January Sale campaign

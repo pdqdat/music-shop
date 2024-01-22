@@ -4,12 +4,19 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
+// Hooks
+import useCart from "@/hooks/use-cart";
+
 // Icons
 import { User, ShoppingCart, Moon, Sun } from "lucide-react";
 
 // Components
 import { Button } from "@/components/ui/button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -18,14 +25,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const NavbarActions = () => {
+    const router = useRouter();
+    const cart = useCart();
+
     const [isMounted, setIsMounted] = useState(false);
     const { setTheme } = useTheme();
 
     useEffect(() => {
         setIsMounted(true);
     }, []);
-
-    const router = useRouter();
 
     if (!isMounted) {
         return null;
@@ -36,8 +44,15 @@ const NavbarActions = () => {
             {/* Theme toggler */}
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon" className="rounded-full">
-                        <Sun className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" size={20} />
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        className="rounded-full"
+                    >
+                        <Sun
+                            className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+                            size={20}
+                        />
                         <Moon
                             className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
                             size={20}
@@ -48,9 +63,15 @@ const NavbarActions = () => {
                 </DropdownMenuTrigger>
 
                 <DropdownMenuContent align="end">
-                    <DropdownMenuItem onClick={() => setTheme("light")}>Light</DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setTheme("dark")}>Dark</DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setTheme("system")}>System</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme("light")}>
+                        Light
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme("dark")}>
+                        Dark
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme("system")}>
+                        System
+                    </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
 
@@ -59,7 +80,7 @@ const NavbarActions = () => {
                 <TooltipTrigger asChild>
                     <Button
                         onClick={() => router.push("/account/login")}
-                        className="text-sm font-medium rounded-full"
+                        className="rounded-full text-sm font-medium"
                         variant="ghost"
                         size="icon"
                     >
@@ -73,11 +94,16 @@ const NavbarActions = () => {
             </Tooltip>
 
             {/* Cart button */}
-            <Button onClick={() => router.push("/cart")} className="flex items-center rounded-full px-4 py-2">
+            <Button
+                onClick={() => router.push("/cart")}
+                className="flex items-center rounded-full px-4 py-2"
+            >
                 <ShoppingCart size={20} />
 
                 {/* Cart length */}
-                <span className="ml-2 text-sm font-medium">0</span>
+                <span className="ml-2 text-sm font-medium">
+                    {cart.items.length}
+                </span>
             </Button>
         </div>
     );
