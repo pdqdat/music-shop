@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 
 // Components
-import { LoginForm } from "../../../../components/forms/login-form";
+import { LoginForm } from "../../../../components/form/login-form";
 import { Button } from "@/components/ui/button";
 
 const LoginPage = () => {
@@ -24,7 +24,7 @@ const LoginPage = () => {
                     className="absolute left-0 top-0 h-full w-full object-cover"
                 />
 
-                <div className="absolute top-8 left-8 z-20 text-white">
+                <div className="absolute left-8 top-8 z-20 text-white">
                     <blockquote className="space-y-2">
                         <p className="text-lg">
                             &ldquo;One good thing about music, when it hits you,

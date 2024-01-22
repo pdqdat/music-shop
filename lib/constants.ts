@@ -1,4 +1,4 @@
-import { Product } from "@/types";
+import { Product, Campaigns } from "@/types";
 
 export const departments = [
     "Guitar",
@@ -78,5 +78,32 @@ export const products: Product[] = [
         department: {
             name: "Electric Guitar",
         },
+    },
+];
+
+export const campaigns: Campaigns[] = [
+    {
+        id: "1",
+        name: "January Sale",
+        banner: "/campaign/Jan-Sale-Banner-Extended.jpg",
+        description:
+            "Our January Sale is a prime time to pick up a bargain on discounted music gear.",
+        productID: [],
+    },
+    {
+        id: "2",
+        name: "Pioneer DJ Back in Stock",
+        banner: "/campaign/pioneer-flx10.jpg",
+        description:
+            "Pioneer DJ DDJ-FLX10 Digital DJ Controller is now back in stock.",
+        productID: [],
+    },
+    {
+        id: "3",
+        name: "Fender Acoustasonic Player Telecaster now available.",
+        banner: "/campaign/fender-platertele.jpg",
+        description:
+            "We are offering this guitar for the amazing price of £679 while stocks last. More stock arriving in 10-14 days. Reserve one now!",
+        productID: [],
     },
 ];

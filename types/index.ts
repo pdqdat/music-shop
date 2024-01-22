@@ -20,3 +20,11 @@ export interface Product {
     images: ProductImages[];
     department: Department;
 }
+
+export interface Campaigns {
+    id: string;
+    name: string;
+    banner: string;
+    description: string;
+    productID: string[];
+}
