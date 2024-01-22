@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 
 // Components
-import { RegisterForm } from "../../../../components/form/register-form";
+import { RegisterForm } from "@/components/form/register-form";
 import { Button } from "@/components/ui/button";
 
 const RegisterPage = () => {

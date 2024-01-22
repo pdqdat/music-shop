@@ -35,15 +35,18 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
     };
 
     return (
-        <Card onClick={handleClick} className="relative flex flex-col justify-between">
+        <Card
+            onClick={handleClick}
+            className="group relative flex flex-col justify-between duration-300 ease-in-out hover:shadow-lg"
+        >
             <CardContent className="space-y-4 p-3">
                 {/* Image & actions */}
-                <div className="relative aspect-square overflow-hidden rounded-lg border">
+                <div className="relative aspect-square overflow-hidden rounded-xl border">
                     <Image
-                        src={data.images?.[0]?.url}
+                        src={data.images?.[0]}
                         alt="Product image"
                         fill
-                        className="aspect-square rounded-lg object-cover duration-300 ease-in-out group-hover:scale-110"
+                        className="aspect-square rounded-lg object-contain duration-300 ease-in-out group-hover:scale-110"
                     />
 
                     {/* Actions */}

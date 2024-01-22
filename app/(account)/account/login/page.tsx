@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 
 // Components
-import { LoginForm } from "../../../../components/form/login-form";
+import { LoginForm } from "@/components/form/login-form";
 import { Button } from "@/components/ui/button";
 
 const LoginPage = () => {

@@ -1,23 +1,13 @@
-export interface Billboard {
-    id: string;
-    label: string;
-    imageUrl: string;
-}
-
 export interface Department {
-    // id: string;
+    id: string;
     name: string;
-}
-
-export interface ProductImages {
-    url: string;
 }
 
 export interface Product {
     id: string;
     name: string;
     price: number;
-    images: ProductImages[];
+    images: string[];
     department: Department;
 }
 

@@ -1,12 +1,13 @@
-import { Product, Campaigns } from "@/types";
+import { Product, Campaigns, Department } from "@/types";
 
-export const departments = [
-    "Guitar",
-    "Electric Guitar",
-    "Bass",
-    "Drum",
-    "Keyboard",
-    "Accessories",
+export const departments: Department[] = [
+    { id: '1', name: "Guitar" },
+    { id: '2', name: "Electric Guitar" },
+    { id: '3', name: "Bass" },
+    { id: '4', name: "Drum" },
+    { id: '5', name: "Keyboard" },
+    { id: '6', name: "Accessories" },
+    { id: '7', name: "DJ" },
 ];
 
 export const products: Product[] = [
@@ -15,18 +16,12 @@ export const products: Product[] = [
         name: "Taylor 112ce-S Grand Concert Electro Acoustic, Sapele",
         price: 976,
         images: [
-            {
-                url: "/taylor/taylor1.png",
-            },
-            {
-                url: "/taylor/taylor2.png",
-            },
-            {
-                url: "/taylor/taylor3.png",
-            },
+            "/taylor/taylor1.png",
+            "/taylor/taylor2.png",
+            "/taylor/taylor3.png",
         ],
         department: {
-            name: "Guitar",
+            id: '1', name: "Guitar"
         },
     },
     {
@@ -34,49 +29,43 @@ export const products: Product[] = [
         name: "Fender Aerodyne Special Stratocaster HSS, Dolphin Gray Metallic",
         price: 999,
         images: [
-            {
-                url: "/fender/fender1.png",
-            },
-            {
-                url: "/fender/fender2.png",
-            },
-            {
-                url: "/fender/fender3.png",
-            },
-            {
-                url: "/fender/fender4.png",
-            },
-            {
-                url: "/fender/fender5.png",
-            },
+            "/fender/fender1.png",
+            "/fender/fender2.png",
+            "/fender/fender3.png",
+            "/fender/fender4.png",
+            "/fender/fender5.png",
         ],
         department: {
-            name: "Electric Guitar",
+            id: '2', name: "Electric Guitar"
         },
     },
     {
         id: "3",
-        name: "Fender",
-        price: 999,
+        name: "Pioneer DJ DDJ-FLX10 Digital DJ Controller",
+        price: 1469,
         images: [
-            {
-                url: "/fender/fender1.png",
-            },
-            {
-                url: "/fender/fender2.png",
-            },
-            {
-                url: "/fender/fender3.png",
-            },
-            {
-                url: "/fender/fender4.png",
-            },
-            {
-                url: "/fender/fender5.png",
-            },
+            "/pioneer/pioneer1.png",
+            "/pioneer/pioneer2.png",
+            "/pioneer/pioneer3.png",
+            "/pioneer/pioneer4.png",
+            "/pioneer/pioneer5.png",
         ],
         department: {
-            name: "Electric Guitar",
+            id: '7', name: "DJ"
+        },
+    },
+    {
+        id: "4",
+        name: "Fender Acoustasonic Player Telecaster, Butterscotch Blonde",
+        price: 679,
+        images: [
+            "/fenderA/fenderA1.png",
+            "/fenderA/fenderA2.png",
+            "/fenderA/fenderA3.png",
+            "/fenderA/fenderA4.png",
+        ],
+        department: {
+            id: '2', name: "Electric Guitar"
         },
     },
 ];
@@ -88,7 +77,7 @@ export const campaigns: Campaigns[] = [
         banner: "/campaign/Jan-Sale-Banner-Extended.jpg",
         description:
             "Our January Sale is a prime time to pick up a bargain on discounted music gear.",
-        productID: [],
+        productID: ["1", "2"],
     },
     {
         id: "2",
@@ -96,7 +85,7 @@ export const campaigns: Campaigns[] = [
         banner: "/campaign/pioneer-flx10.jpg",
         description:
             "Pioneer DJ DDJ-FLX10 Digital DJ Controller is now back in stock.",
-        productID: [],
+        productID: ["3"],
     },
     {
         id: "3",
@@ -104,6 +93,6 @@ export const campaigns: Campaigns[] = [
         banner: "/campaign/fender-platertele.jpg",
         description:
             "We are offering this guitar for the amazing price of £679 while stocks last. More stock arriving in 10-14 days. Reserve one now!",
-        productID: [],
+        productID: ["4"],
     },
 ];

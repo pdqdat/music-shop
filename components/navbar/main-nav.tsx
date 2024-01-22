@@ -5,17 +5,20 @@ import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 
+// Types
+import { Department } from "@/types";
+
 interface MainNavProps {
-    data: string[];
+    data: Department[];
 }
 
 const MainNav: React.FC<MainNavProps> = ({ data }) => {
     const pathname = usePathname();
 
     const routes = data.map((route) => ({
-        href: `/department/${route}`,
-        label: route,
-        active: pathname === `/department/${route}`,
+        href: `/department/${route.id}`,
+        label: route.name,
+        active: pathname === `/department/${route.id}`,
     }));
 
     return (
@@ -25,8 +28,8 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
                     key={route.href}
                     href={route.href}
                     className={cn(
-                        "text-sm font-medium transition-colors hover:text-black",
-                        route.active ? "text-black" : "text-neutral-500"
+                        "font-medium transition-colors hover:text-foreground",
+                        route.active ? "text-foreground" : "text-neutral-500",
                     )}
                 >
                     {route.label}
