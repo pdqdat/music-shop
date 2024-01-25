@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import axios from "axios";
 
 // Hooks
 import useCart from "@/hooks/use-cart";
@@ -20,7 +19,7 @@ const CartSummary = () => {
     const items = useCart((state) => state.items);
 
     const totalPrice = items.reduce((total, item) => {
-        return total + Number(item.price);
+        return total + Number(item.price * item.quantity);
     }, 0);
 
     const onCheckout = async () => {
@@ -50,7 +49,7 @@ const CartSummary = () => {
                 className="mt-6 w-full"
             >
                 {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Go to Checkout
+                Process to Checkout
             </Button>
         </div>
     );

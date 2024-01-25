@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useTheme } from "next-themes";
+import Image from "next/image";
 
 // Components
 import { RegisterForm } from "@/components/form/register-form";
@@ -62,14 +63,15 @@ const RegisterPage = () => {
 
             {/* Div that contains the background image */}
             <div className="relative hidden h-full w-full lg:block">
-                <img
+                <Image
                     src={
                         theme === "light"
-                            ? "/light-cover.jpg"
-                            : "/dark-cover.jpg"
+                            ? "/light-cover.webp"
+                            : "/dark-cover.webp"
                     }
                     alt="Music space"
-                    className="absolute left-0 top-0 h-full w-full object-cover"
+                    fill
+                    className="absolute left-0 top-0 object-cover"
                 />
 
                 <div className="absolute right-8 top-8 z-20 text-white dark:left-8">

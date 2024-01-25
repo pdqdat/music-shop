@@ -39,6 +39,11 @@ const NavbarActions = () => {
         return null;
     }
 
+    // Get the total number of items in the cart
+    const totalItems = cart.items.reduce((total, item) => {
+        return total + Number(item.quantity);
+    }, 0);
+
     return (
         <div className="ml-auto flex items-center gap-x-2">
             {/* Theme toggler */}
@@ -102,7 +107,7 @@ const NavbarActions = () => {
 
                 {/* Cart length */}
                 <span className="ml-2 text-sm font-medium">
-                    {cart.items.length}
+                    {totalItems}
                 </span>
             </Button>
         </div>

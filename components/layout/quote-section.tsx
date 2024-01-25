@@ -1,9 +1,12 @@
+import Image from "next/image";
+
 const QuoteSection = () => {
     return (
         <div className="relative h-80">
-            <img
+            <Image
                 src="/panel-image.jpg"
                 alt="Banner image"
+                fill
                 className="absolute left-0 top-0 h-full w-full object-cover"
             />
 

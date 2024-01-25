@@ -12,7 +12,7 @@ const SocialSection = () => {
                 <Container>
                     <div className="flex items-center justify-between">
                         <p className="text-2xl font-bold lg:text-4xl">
-                            Let's get social
+                            Let&apos;s get social
                         </p>
 
                         <div className="flex space-x-4">

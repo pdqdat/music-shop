@@ -5,17 +5,18 @@ import Link from "next/link";
 import useCart from "@/hooks/use-cart";
 
 // Icons
-import { X } from "lucide-react";
+import { X, Minus, Plus } from "lucide-react";
 
 // Types
-import { Product } from "@/types";
+import { Product, CartItem } from "@/types";
 
 // Components
 import { Button } from "@/components/ui/button";
 import Currency from "@/components/currency";
+import { Badge } from "../ui/badge";
 
 interface CartItemProps {
-    data: Product;
+    data: CartItem;
 }
 
 const CartItem: React.FC<CartItemProps> = ({ data }) => {
@@ -23,6 +24,14 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
 
     const onRemove = () => {
         cart.removeItem(data.id);
+    };
+
+    const onIncreaseQuantity = () => {
+        cart.increaseQuantity(data.id);
+    };
+
+    const onDecreaseQuantity = () => {
+        cart.decreaseQuantity(data.id);
     };
 
     return (
@@ -56,10 +65,43 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
                     </div>
 
                     <div className="mt-1 flex text-sm">
+                        <div className="ml-4 border-l pl-4">
+                            <p className="text-muted-foreground">
+                                {data.department.name}
+                            </p>
+
+                            {/* Quantity controllers */}
+                            <div className="mt-2 flex items-center space-x-1">
+                                <Button
+                                    variant="ghost"
+                                    className="h-6 w-6 p-0"
+                                    size="icon"
+                                    onClick={onDecreaseQuantity}
+                                >
+                                    <Minus size={15} />
+                                </Button>
+
+                                <Badge className="text-sm">
+                                    {data.quantity}
+                                </Badge>
+                                {/* <p>{data.quantity}</p> */}
+
+                                <Button
+                                    variant="ghost"
+                                    className="h-6 w-6 p-0"
+                                    size="icon"
+                                    onClick={onIncreaseQuantity}
+                                >
+                                    <Plus size={15} />
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                    {/* <div className="mt-1 flex text-sm">
                         <p className="ml-4 border-l pl-4 text-muted-foreground">
                             {data.department.name}
                         </p>
-                    </div>
+                    </div> */}
 
                     <Currency value={data.price} className="pt-2" />
                 </div>

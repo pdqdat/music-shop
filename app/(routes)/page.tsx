@@ -8,7 +8,6 @@ import CampaignSection from "@/components/layout/campaign-section";
 import Container from "@/components/container";
 import ProductCard from "@/components/product-card";
 import { Button } from "@/components/ui/button";
-import DraftProductCard from "@/components/draft-product-card";
 
 const HomePage = () => {
     // Get all products in the January Sale campaign

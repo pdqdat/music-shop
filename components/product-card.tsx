@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { Expand, ShoppingCart } from "lucide-react";
 
 // Types
-import { Product } from "@/types";
+import { Product, CartItem } from "@/types";
 
 // Constants
 import { campaigns } from "@/lib/constants";
@@ -41,7 +41,13 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
     const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
         event.stopPropagation();
 
-        cart.addItem(data);
+        // Add the quantity property to the product
+        const cartItem: CartItem = {
+            ...data,
+            quantity: 1,
+        };
+
+        cart.addItem(cartItem);
     };
 
     // Find the January Sale campaign
@@ -77,6 +83,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
                     {/* Actions */}
                     <div className="absolute bottom-5 w-full px-6 opacity-0 transition duration-300 ease-in-out group-hover:opacity-100">
                         <div className="flex justify-center gap-x-6">
+                            {/* TODO: Preview dialog */}
                             <Button
                                 onClick={onPreview}
                                 variant="secondary"

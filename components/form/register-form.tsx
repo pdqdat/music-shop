@@ -116,6 +116,7 @@ export function RegisterForm({ className, ...props }: RegisterFormProps) {
                                 <FormControl>
                                     <Input
                                         {...field}
+                                        autoFocus
                                         autoCapitalize="none"
                                         autoComplete="email"
                                         autoCorrect="off"

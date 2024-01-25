@@ -71,11 +71,11 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
                         duration: 2000,
                     });
                 } else {
-                    toast.error(data.message || "Something went wrong!");
+                    toast.error(data.resultMsg || "Something went wrong!");
                 }
             })
             .catch(() => {
-                toast.error("Something went wrong!");
+                toast.error("Something went wrong! Please try again.");
             })
             .finally(() => {
                 setIsLoading(false);
@@ -99,6 +99,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
                                 <FormControl>
                                     <Input
                                         {...field}
+                                        autoFocus
                                         autoCapitalize="none"
                                         autoComplete="email"
                                         autoCorrect="off"
