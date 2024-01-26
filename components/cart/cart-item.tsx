@@ -74,7 +74,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
                             <div className="mt-2 flex items-center space-x-1">
                                 <Button
                                     variant="ghost"
-                                    className="h-6 w-6 p-0"
+                                    className="h-6 w-6 p-0 rounded-full"
                                     size="icon"
                                     onClick={onDecreaseQuantity}
                                 >
@@ -84,11 +84,10 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
                                 <Badge className="text-sm">
                                     {data.quantity}
                                 </Badge>
-                                {/* <p>{data.quantity}</p> */}
 
                                 <Button
                                     variant="ghost"
-                                    className="h-6 w-6 p-0"
+                                    className="h-6 w-6 p-0 rounded-full"
                                     size="icon"
                                     onClick={onIncreaseQuantity}
                                 >

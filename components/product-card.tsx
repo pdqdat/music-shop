@@ -34,10 +34,6 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
         router.push(`/product/${data?.id}`);
     };
 
-    const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {
-        event.stopPropagation();
-    };
-
     const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
         event.stopPropagation();
 
@@ -84,11 +80,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
                     <div className="absolute bottom-5 w-full px-6 opacity-0 transition duration-300 ease-in-out group-hover:opacity-100">
                         <div className="flex justify-center gap-x-6">
                             {/* TODO: Preview dialog */}
-                            <Button
-                                onClick={onPreview}
-                                variant="secondary"
-                                size="icon"
-                            >
+                            <Button variant="secondary" size="icon">
                                 <Expand size={20} />
                             </Button>
 
@@ -116,8 +108,8 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
                 </div>
             </CardContent>
 
-            {/* Price */}
             <CardFooter className="flex-col p-3">
+                {/* Stock status */}
                 {data?.stock !== 0 ? (
                     <Badge className="mb-2 text-sm">In stock</Badge>
                 ) : (
@@ -126,6 +118,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
                     </Badge>
                 )}
 
+                {/* Price */}
                 <div className="flex w-full items-center justify-between border-t pt-2">
                     <Currency value={data?.price} className="text-lg" />
 

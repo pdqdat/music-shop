@@ -3,11 +3,11 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 // Components
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { Toaster } from "@/components/ui/sonner"
 
 // Providers
 import { ThemeProvider } from "@/providers/theme-provider";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import ToastProvider from "@/providers/toast-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,12 +28,15 @@ export default function RootLayout({
             </head>
 
             <body className={inter.className}>
-                <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-                    <TooltipProvider>
-                        {children}
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                    disableTransitionOnChange
+                >
+                    <TooltipProvider>{children}</TooltipProvider>
 
-                        <Toaster />
-                    </TooltipProvider>
+                    <ToastProvider />
                 </ThemeProvider>
             </body>
         </html>
