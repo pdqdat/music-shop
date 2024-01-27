@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 // Icons
 import { Loader2 } from "lucide-react";
@@ -25,74 +26,55 @@ import {
 } from "@/components/ui/form";
 import { toast } from "sonner";
 
-// States
-import useUserStore from "@/hooks/use-user";
+// Hooks
+import { useCheckout } from "@/hooks/use-checkout";
 
-interface RegisterFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface CheckoutFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const formSchema = z.object({
-    email: z.string().email({
-        message: "Invalid email address",
-    }),
     fullName: z.string().min(1, {
         message: "Please enter your full name properly",
     }),
-    password: z.string().min(3, {
-        message: "Password must contain at least 3 character(s)",
+    email: z.string().email({
+        message: "Invalid email address",
     }),
-    callBackUrl: z.string(),
+    phoneNumber: z.string().regex(/^0[0-9]{9}$/, {
+        message: "Phone number must be 10 digits long and start with '0'",
+    }),
+    address: z.string().min(1, {
+        message: "Please enter your address properly",
+    }),
 });
 
-export function RegisterForm({ className, ...props }: RegisterFormProps) {
+export function CheckoutForm({ className, ...props }: CheckoutFormProps) {
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
-    const { setLoginData } = useUserStore();
+    const { setCheckoutData } = useCheckout();
+    const router = useRouter();
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            email: "",
             fullName: "",
-            password: "",
-            callBackUrl: "/",
+            email: "",
+            phoneNumber: "",
+            address: "",
         },
     });
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         setIsLoading(true);
 
-        console.log(values);
+        setCheckoutData(
+            values.fullName,
+            values.email,
+            values.phoneNumber,
+            values.address,
+        );
+        router.push('/payment');
 
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 3000);
-
-        // axios
-        //     .post("http://localhost:8080/auth/api/register", values)
-        //     .then((response) => {
-        //         const { data } = response;
-        //         if (data.status === "SUCCESS") {
-        //             const { accessToken, userId } = data.data;
-
-        //             console.log("Access Token:", accessToken);
-        //             console.log("User ID:", userId);
-
-        //             // Update the user state with the new access token and user ID
-        //             setLoginData(accessToken, userId);
-
-        //             toast("Logged in", {
-        //                 description: `User ID: ${userId}`,
-        //                 duration: 2000,
-        //             });
-        //         } else {
-        //             toast.error(data.message || "Something went wrong!");
-        //         }
-        //     })
-        //     .catch(() => {
-        //         toast.error("Something went wrong!");
-        //     })
-        //     .finally(() => {
-        //         setIsLoading(false);
-        //     });
+        // setTimeout(() => {
+        //     setIsLoading(false);
+        // }, 3000);
     }
 
     return (
@@ -104,6 +86,26 @@ export function RegisterForm({ className, ...props }: RegisterFormProps) {
                 >
                     <FormField
                         control={form.control}
+                        name="fullName"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Full name</FormLabel>
+
+                                <FormControl>
+                                    <Input
+                                        {...field}
+                                        disabled={isLoading}
+                                        autoFocus
+                                    />
+                                </FormControl>
+
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
+                    <FormField
+                        control={form.control}
                         name="email"
                         render={({ field }) => (
                             <FormItem>
@@ -112,7 +114,6 @@ export function RegisterForm({ className, ...props }: RegisterFormProps) {
                                 <FormControl>
                                     <Input
                                         {...field}
-                                        autoFocus
                                         autoCapitalize="none"
                                         autoComplete="email"
                                         autoCorrect="off"
@@ -127,10 +128,10 @@ export function RegisterForm({ className, ...props }: RegisterFormProps) {
 
                     <FormField
                         control={form.control}
-                        name="fullName"
+                        name="phoneNumber"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Full name</FormLabel>
+                                <FormLabel>Phone number</FormLabel>
 
                                 <FormControl>
                                     <Input {...field} disabled={isLoading} />
@@ -143,17 +144,13 @@ export function RegisterForm({ className, ...props }: RegisterFormProps) {
 
                     <FormField
                         control={form.control}
-                        name="password"
+                        name="address"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Password</FormLabel>
+                                <FormLabel>Shipping address</FormLabel>
 
                                 <FormControl>
-                                    <Input
-                                        {...field}
-                                        type="password"
-                                        disabled={isLoading}
-                                    />
+                                    <Input {...field} disabled={isLoading} />
                                 </FormControl>
 
                                 <FormMessage />
@@ -165,27 +162,10 @@ export function RegisterForm({ className, ...props }: RegisterFormProps) {
                         {isLoading && (
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                         )}
-                        Register
+                        Payment
                     </Button>
                 </form>
             </Form>
-
-            <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                    <span className="w-full border-t" />
-                </div>
-
-                <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-background px-2 text-muted-foreground">
-                        Or continue with
-                    </span>
-                </div>
-            </div>
-
-            <Button variant="outline" type="button" disabled={isLoading}>
-                {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Google
-            </Button>
         </div>
     );
 }

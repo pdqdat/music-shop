@@ -13,6 +13,7 @@ export interface Product {
 }
 
 export interface CartItem extends Product {
+    id:string;
     quantity: number;
 }
 

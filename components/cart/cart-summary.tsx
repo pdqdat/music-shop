@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useRouter } from "next/navigation";
 
 // Hooks
 import useCart from "@/hooks/use-cart";
@@ -14,6 +15,7 @@ import Currency from "@/components/currency";
 import { toast } from "sonner";
 
 const CartSummary = () => {
+    const router = useRouter();
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
     const items = useCart((state) => state.items);
@@ -22,13 +24,8 @@ const CartSummary = () => {
         return total + Number(item.price * item.quantity);
     }, 0);
 
-    const onCheckout = async () => {
-        setIsLoading(true);
-
-        setTimeout(() => {
-            setIsLoading(false);
-            toast.success("Checkout successful!");
-        }, 3000);
+    const toCheckout =  () => {
+        router.push('/checkout');
     };
 
     return (
@@ -43,14 +40,16 @@ const CartSummary = () => {
                 </div>
             </div>
 
-            <Button
-                onClick={onCheckout}
-                disabled={items.length === 0 || isLoading}
-                className="mt-6 w-full"
-            >
-                {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Process to Checkout
-            </Button>
+                <Button
+                    onClick={toCheckout}
+                    disabled={items.length === 0 || isLoading}
+                    className="mt-6 w-full"
+                >
+                    {isLoading && (
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    )}
+                    Process to Checkout
+                </Button>
         </div>
     );
 };

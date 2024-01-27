@@ -3,7 +3,7 @@
 import Link from "next/link";
 
 // Icons
-import { Menu, ChevronRight } from "lucide-react";
+import { Menu } from "lucide-react";
 
 // Constants
 import { departments } from "@/lib/constants";
@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
     const routes = departments.map((route) => ({
-        href: `/department/${route.id}`,
+        href: `/category/${route.id}`,
         label: route.name,
     }));
 

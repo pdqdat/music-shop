@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { MouseEventHandler } from "react";
 import { useRouter } from "next/navigation";
+import Script from "next/script";
 
 // Icons
 import { Expand, ShoppingCart } from "lucide-react";
@@ -55,83 +56,90 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
     const isInJanuarySale = januarySaleCampaign?.productID.includes(data.id);
 
     return (
-        <Card
-            onClick={handleClick}
-            className="group relative flex flex-col justify-between duration-300 ease-in-out hover:shadow-lg"
-        >
-            <CardContent className="space-y-4 p-3">
-                {/* Image & actions */}
-                <div className="relative aspect-square overflow-hidden rounded-xl border">
-                    {/* Campaign tag */}
-                    {isInJanuarySale && (
-                        <div className="absolute -right-12 -top-12 z-20 flex aspect-square w-24 rotate-45 items-end justify-center bg-primary text-sm font-medium text-black">
-                            Jan Sale
-                        </div>
-                    )}
+        <>
+            <Card
+                onClick={handleClick}
+                className="group relative flex flex-col justify-between duration-300 ease-in-out hover:shadow-lg"
+            >
+                <CardContent className="space-y-4 p-3">
+                    {/* Image & actions */}
+                    <div className="relative aspect-square overflow-hidden rounded-xl border">
+                        {/* Campaign tag */}
+                        {isInJanuarySale && (
+                            <div className="absolute -right-12 -top-12 z-20 flex aspect-square w-24 rotate-45 items-end justify-center bg-primary text-sm font-medium text-black">
+                                Jan Sale
+                            </div>
+                        )}
 
-                    <Image
-                        src={data.images?.[0]}
-                        alt="Product image"
-                        fill
-                        className="aspect-square rounded-lg object-contain duration-300 ease-in-out group-hover:scale-110"
-                    />
+                        <Image
+                            src={data.images?.[0]}
+                            alt="Product image"
+                            fill
+                            className="aspect-square rounded-lg object-contain duration-300 ease-in-out group-hover:scale-110"
+                        />
 
-                    {/* Actions */}
-                    <div className="absolute bottom-5 w-full px-6 opacity-0 transition duration-300 ease-in-out group-hover:opacity-100">
-                        <div className="flex justify-center gap-x-6">
-                            {/* TODO: Preview dialog */}
-                            <Button variant="secondary" size="icon">
-                                <Expand size={20} />
-                            </Button>
+                        {/* Actions */}
+                        <div className="absolute bottom-5 w-full px-6 opacity-0 transition duration-300 ease-in-out group-hover:opacity-100">
+                            <div className="flex justify-center gap-x-6">
+                                {/* TODO: Preview dialog */}
+                                <Button variant="secondary" size="icon">
+                                    <Expand size={20} />
+                                </Button>
 
-                            <Button
-                                onClick={onAddToCart}
-                                size="icon"
-                                className="hover:scale-110"
-                                disabled={data.stock === 0}
-                            >
-                                <ShoppingCart size={20} />
-                            </Button>
+                                <Button
+                                    onClick={onAddToCart}
+                                    size="icon"
+                                    className="hover:scale-110"
+                                    disabled={data.stock === 0}
+                                >
+                                    <ShoppingCart size={20} />
+                                </Button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                {/* Info */}
-                <div className="space-y-2">
-                    <p className="line-clamp-3 text-lg font-semibold">
-                        {data.name}
-                    </p>
+                    {/* Info */}
+                    <div className="space-y-2">
+                        <p className="line-clamp-3 text-lg font-semibold">
+                            {data.name}
+                        </p>
 
-                    <p className="text-sm text-gray-700 dark:text-gray-500">
-                        {data.department?.name}
-                    </p>
-                </div>
-            </CardContent>
+                        <p className="text-sm text-gray-700 dark:text-gray-500">
+                            {data.department?.name}
+                        </p>
+                    </div>
+                </CardContent>
 
-            <CardFooter className="flex-col p-3">
-                {/* Stock status */}
-                {data?.stock !== 0 ? (
-                    <Badge className="mb-2 text-sm">In stock</Badge>
-                ) : (
-                    <Badge className="mb-2 text-sm" variant="destructive">
-                        Out of stock
-                    </Badge>
-                )}
-
-                {/* Price */}
-                <div className="flex w-full items-center justify-between border-t pt-2">
-                    <Currency value={data?.price} className="text-lg" />
-
-                    {/* Pre-sale price */}
-                    {isInJanuarySale && (
-                        <Currency
-                            value={data?.price + 100}
-                            className="text-lg text-muted-foreground line-through"
-                        />
+                <CardFooter className="flex-col p-3">
+                    {/* Stock status */}
+                    {data?.stock !== 0 ? (
+                        <Badge className="mb-2 text-sm">In stock</Badge>
+                    ) : (
+                        <Badge className="mb-2 text-sm" variant="destructive">
+                            Out of stock
+                        </Badge>
                     )}
-                </div>
-            </CardFooter>
-        </Card>
+
+                    {/* Price */}
+                    <div className="flex w-full items-center justify-between border-t pt-2">
+                        <Currency value={data?.price} className="text-lg" />
+
+                        {/* Pre-sale price */}
+                        {isInJanuarySale && (
+                            <Currency
+                                value={data?.price + 100}
+                                className="text-lg text-muted-foreground line-through"
+                            />
+                        )}
+                    </div>
+
+                    <div
+                        className="script-general-container"
+                        data-fundiin-loop-product-price-origin="300000"
+                    ></div>
+                </CardFooter>
+            </Card>
+        </>
     );
 };
 

@@ -17,9 +17,10 @@ import { Badge } from "../ui/badge";
 
 interface CartItemProps {
     data: CartItem;
+    small?: boolean;
 }
 
-const CartItem: React.FC<CartItemProps> = ({ data }) => {
+const CartItem: React.FC<CartItemProps> = ({ data, small }) => {
     const cart = useCart();
 
     const onRemove = () => {
@@ -36,7 +37,8 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
 
     return (
         <li className="flex border-b py-6">
-            <div className="relative aspect-square w-24 overflow-hidden rounded-xl border sm:h-48 sm:w-48">
+            {/* <div className={`relative aspect-square ${small ? 'w-12' : 'w-24'} overflow-hidden rounded-xl border sm:h-48 sm:w-48`}> */}
+            <div className="relative aspect-square w-24 overflow-hidden rounded-xl border">
                 <Link href={`/product/${data.id}`}>
                     <Image
                         src={data.images[0]}
@@ -48,59 +50,58 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
             </div>
 
             <div className="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6">
-                <div className="absolute right-0 top-0 z-10">
-                    <Button
-                        className="rounded-full"
-                        variant="ghost"
-                        size="icon"
-                        onClick={onRemove}
-                    >
-                        <X size={20} />
-                    </Button>
-                </div>
+                {!small && (
+                    <div className="absolute right-0 top-0 z-10">
+                        <Button
+                            className="rounded-full"
+                            variant="ghost"
+                            size="icon"
+                            onClick={onRemove}
+                        >
+                            <X size={20} />
+                        </Button>
+                    </div>
+                )}
 
                 <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
                     <div className="flex justify-between">
                         <p className=" text-lg font-semibold">{data.name}</p>
                     </div>
 
-                    <div className="mt-1 flex text-sm">
-                        <div className="ml-4 border-l pl-4">
-                            <p className="text-muted-foreground">
-                                {data.department.name}
-                            </p>
+                    {!small && (
+                        <div className="mt-1 flex text-sm">
+                            <div className="ml-4 border-l pl-4">
+                                <p className="text-muted-foreground">
+                                    {data.department.name}
+                                </p>
 
-                            {/* Quantity controllers */}
-                            <div className="mt-2 flex items-center space-x-1">
-                                <Button
-                                    variant="ghost"
-                                    className="h-6 w-6 p-0 rounded-full"
-                                    size="icon"
-                                    onClick={onDecreaseQuantity}
-                                >
-                                    <Minus size={15} />
-                                </Button>
+                                {/* Quantity controllers */}
+                                <div className="mt-2 flex items-center space-x-1">
+                                    <Button
+                                        variant="ghost"
+                                        className="h-6 w-6 rounded-full p-0"
+                                        size="icon"
+                                        onClick={onDecreaseQuantity}
+                                    >
+                                        <Minus size={15} />
+                                    </Button>
 
-                                <Badge className="text-sm">
-                                    {data.quantity}
-                                </Badge>
+                                    <Badge className="text-sm">
+                                        {data.quantity}
+                                    </Badge>
 
-                                <Button
-                                    variant="ghost"
-                                    className="h-6 w-6 p-0 rounded-full"
-                                    size="icon"
-                                    onClick={onIncreaseQuantity}
-                                >
-                                    <Plus size={15} />
-                                </Button>
+                                    <Button
+                                        variant="ghost"
+                                        className="h-6 w-6 rounded-full p-0"
+                                        size="icon"
+                                        onClick={onIncreaseQuantity}
+                                    >
+                                        <Plus size={15} />
+                                    </Button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    {/* <div className="mt-1 flex text-sm">
-                        <p className="ml-4 border-l pl-4 text-muted-foreground">
-                            {data.department.name}
-                        </p>
-                    </div> */}
+                    )}
 
                     <Currency value={data.price} className="pt-2" />
                 </div>
