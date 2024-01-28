@@ -105,7 +105,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
                         </p>
 
                         <p className="text-sm text-gray-700 dark:text-gray-500">
-                            {data.department?.name}
+                            {data.category?.name}
                         </p>
                     </div>
                 </CardContent>

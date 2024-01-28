@@ -4,7 +4,7 @@ import Link from "next/link";
 import { User } from "lucide-react";
 
 // Constants
-import { departments } from "@/lib/constants";
+import { categories } from "@/lib/constants";
 
 // Components
 import Container from "@/components/container";
@@ -20,7 +20,7 @@ const AdminNavbar = () => {
                         <p className="text-xl font-bold">DC MUSIC</p>
                     </Link>
 
-                    <AdminMainNav data={departments} />
+                    <AdminMainNav data={categories} />
 
                     <div className="ml-auto flex items-center gap-x-2">
                         <Link

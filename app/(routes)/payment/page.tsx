@@ -5,23 +5,19 @@ import axios from "axios";
 
 // Hooks
 import useCart from "@/hooks/use-cart";
+import useCheckoutData from "@/hooks/use-checkout";
 
 //Components
 import Container from "@/components/container";
-import CartItem from "@/components/cart/cart-item";
-import { CheckoutForm } from "@/components/form/checkout-form";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-
-// Hooks
-import { useCheckout } from "@/hooks/use-checkout";
 
 export const revalidate = 0;
 
 const CartPage = () => {
     const [isMounted, setIsMounted] = useState(false);
     const cart = useCart();
-    const { fullName, email, phoneNumber, address } = useCheckout();
+    const { fullName, email, phoneNumber, address } = useCheckoutData();
 
     const paymentMethod = "Momo";
 
@@ -34,30 +30,24 @@ const CartPage = () => {
     }
 
     const handleClick = () => {
-        // const checkoutData = {
-        //     fullName,
-        //     email,
-        //     phoneNumber,
-        //     address,
-        //     items: cart.items,
-        //     paymentMethod,
-        // };
-        const checkoutData = {
-            phone: "0365485323",
-            email: "dat@gmail.com",
-            quantity: 2,
-            totalMoney: 10000000,
+        const orderInfo = {
+            fullName,
+            email,
+            phoneNumber,
+            address,
+            items: cart.items,
+            paymentMethod,
         };
-        console.log(checkoutData);
+        console.log(orderInfo);
 
-        axios
-            .post("http://172.16.1.179:8080/payment", checkoutData)
-            .then((response) => {
-                console.log(response);
-            })
-            .catch(() => {
-                toast.error("Something went wrong! Please try again.");
-            });
+        // axios
+        //     .post("http://172.16.1.179:8080/payment", orderInfo)
+        //     .then((response) => {
+        //         console.log(response);
+        //     })
+        //     .catch(() => {
+        //         toast.error("Something went wrong! Please try again.");
+        //     });
     };
 
     return (

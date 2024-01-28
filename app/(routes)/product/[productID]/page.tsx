@@ -28,7 +28,7 @@ const ProductPage = ({ params }: { params: { productID: string } }) => {
                 </h1>
                 
                 <p className="text-2xl text-gray-700 dark:text-gray-500">
-                    {product.department.name}
+                    {product.category.name}
                 </p>
             </div>
         </Container>

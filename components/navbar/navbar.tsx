@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Menu } from "lucide-react";
 
 // Constants
-import { departments } from "@/lib/constants";
+import { categories } from "@/lib/constants";
 
 // Components
 import Container from "@/components/container";
@@ -16,7 +16,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
-    const routes = departments.map((route) => ({
+    const routes = categories.map((route) => ({
         href: `/category/${route.id}`,
         label: route.name,
     }));

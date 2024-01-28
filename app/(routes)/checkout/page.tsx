@@ -7,7 +7,7 @@ import useCart from "@/hooks/use-cart";
 
 //Components
 import Container from "@/components/container";
-import CartItem from "@/components/cart/cart-item";
+import SmallCartItem from "@/components/cart/small-cart-item";
 import { CheckoutForm } from "@/components/form/checkout-form";
 
 export const revalidate = 0;
@@ -42,7 +42,7 @@ const CartPage = () => {
 
                             <ul>
                                 {cart.items.map((item) => (
-                                    <CartItem key={item.id} data={item} small />
+                                    <SmallCartItem key={item.id} data={item} />
                                 ))}
                             </ul>
                         </div>

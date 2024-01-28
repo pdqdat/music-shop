@@ -6,19 +6,19 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 // Types
-import { Department } from "@/types";
+import { Category } from "@/types";
 
 interface AdminMainNavProps {
-    data: Department[];
+    data: Category[];
 }
 
 const AdminMainNav: React.FC<AdminMainNavProps> = ({ data }) => {
     const pathname = usePathname();
 
     const routes = data.map((route) => ({
-        href: `/department/${route.id}`,
+        href: `/admin/category-manager/${route.id}`,
         label: route.name,
-        active: pathname === `/department/${route.id}`,
+        active: pathname === `/admin/category-manager/${route.id}`,
     }));
 
     return (

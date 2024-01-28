@@ -1,4 +1,4 @@
-export interface Department {
+export interface Category {
     id: string;
     name: string;
 }
@@ -8,12 +8,11 @@ export interface Product {
     name: string;
     price: number;
     images: string[];
-    department: Department;
+    category: Category;
     stock: number;
 }
 
 export interface CartItem extends Product {
-    id:string;
     quantity: number;
 }
 

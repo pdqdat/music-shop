@@ -6,19 +6,19 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 // Types
-import { Department } from "@/types";
+import { Category } from "@/types";
 
 interface MainNavProps {
-    data: Department[];
+    data: Category[];
 }
 
 const MainNav: React.FC<MainNavProps> = ({ data }) => {
     const pathname = usePathname();
 
     const routes = data.map((route) => ({
-        href: `/department/${route.id}`,
+        href: `/category/${route.id}`,
         label: route.name,
-        active: pathname === `/department/${route.id}`,
+        active: pathname === `/category/${route.id}`,
     }));
 
     return (

@@ -1,6 +1,6 @@
-import { Product, Campaigns, Department } from "@/types";
+import { Product, Campaigns, Category } from "@/types";
 
-export const departments: Department[] = [
+export const categories: Category[] = [
     { id: "1", name: "Guitar" },
     { id: "2", name: "Electric Guitar" },
     { id: "3", name: "Bass" },
@@ -20,7 +20,7 @@ export const products: Product[] = [
             "/taylor/taylor2.png",
             "/taylor/taylor3.png",
         ],
-        department: {
+        category: {
             id: "1",
             name: "Guitar",
         },
@@ -37,7 +37,7 @@ export const products: Product[] = [
             "/fender/fender4.png",
             "/fender/fender5.png",
         ],
-        department: {
+        category: {
             id: "2",
             name: "Electric Guitar",
         },
@@ -54,7 +54,7 @@ export const products: Product[] = [
             "/pioneer/pioneer4.png",
             "/pioneer/pioneer5.png",
         ],
-        department: {
+        category: {
             id: "7",
             name: "DJ",
         },
@@ -70,7 +70,7 @@ export const products: Product[] = [
             "/fenderA/fenderA3.png",
             "/fenderA/fenderA4.png",
         ],
-        department: {
+        category: {
             id: "2",
             name: "Electric Guitar",
         },
@@ -87,7 +87,7 @@ export const products: Product[] = [
             "/keyboard/keyboard4.png",
             "/keyboard/keyboard5.png",
         ],
-        department: {
+        category: {
             id: "5",
             name: "Keyboard",
         },

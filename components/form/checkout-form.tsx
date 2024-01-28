@@ -27,7 +27,7 @@ import {
 import { toast } from "sonner";
 
 // Hooks
-import { useCheckout } from "@/hooks/use-checkout";
+import useCheckoutData from "@/hooks/use-checkout";
 
 interface CheckoutFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -48,7 +48,7 @@ const formSchema = z.object({
 
 export function CheckoutForm({ className, ...props }: CheckoutFormProps) {
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
-    const { setCheckoutData } = useCheckout();
+    const { setCheckoutData } = useCheckoutData();
     const router = useRouter();
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -70,7 +70,7 @@ export function CheckoutForm({ className, ...props }: CheckoutFormProps) {
             values.phoneNumber,
             values.address,
         );
-        router.push('/payment');
+        router.push("/payment");
 
         // setTimeout(() => {
         //     setIsLoading(false);
