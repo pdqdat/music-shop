@@ -2,7 +2,7 @@
 import { Toaster } from "@/components/ui/sonner";
 
 const ToastProvider = () => {
-    return <Toaster />;
+    return <Toaster position="top-right" />;
 };
 
 export default ToastProvider;

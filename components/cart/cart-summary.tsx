@@ -24,8 +24,10 @@ const CartSummary = () => {
         return total + Number(item.price * item.quantity);
     }, 0);
 
-    const toCheckout =  () => {
-        router.push('/checkout');
+    const toCheckout = () => {
+        toast.loading("Redirecting to checkout...");
+
+        router.push("/checkout");
     };
 
     return (
@@ -40,16 +42,14 @@ const CartSummary = () => {
                 </div>
             </div>
 
-                <Button
-                    onClick={toCheckout}
-                    disabled={items.length === 0 || isLoading}
-                    className="mt-6 w-full"
-                >
-                    {isLoading && (
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    )}
-                    Process to Checkout
-                </Button>
+            <Button
+                onClick={toCheckout}
+                disabled={items.length === 0 || isLoading}
+                className="mt-6 w-full"
+            >
+                {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                Go to Checkout
+            </Button>
         </div>
     );
 };

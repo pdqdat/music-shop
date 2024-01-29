@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 // Icons
@@ -10,6 +12,7 @@ import { categories } from "@/lib/constants";
 import Container from "@/components/container";
 import AdminMainNav from "./admin-main-nav";
 import { Button } from "@/components/ui/button";
+import ThemeToggler from "@/components/theme-toggler";
 
 const AdminNavbar = () => {
     return (
@@ -23,8 +26,10 @@ const AdminNavbar = () => {
                     <AdminMainNav data={categories} />
 
                     <div className="ml-auto flex items-center gap-x-2">
+                        <ThemeToggler />
+
                         <Link
-                            href="/account/login"
+                            href="/login"
                             className="ml-4 flex gap-x-2 lg:ml-0"
                         >
                             <Button

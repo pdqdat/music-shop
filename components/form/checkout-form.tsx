@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -9,9 +9,10 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 // Icons
-import { Loader2 } from "lucide-react";
+import { Loader2, ChevronLeft } from "lucide-react";
 
 // Components
 import { Button } from "@/components/ui/button";
@@ -25,6 +26,15 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { toast } from "sonner";
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 
 // Hooks
 import useCheckoutData from "@/hooks/use-checkout";
@@ -41,6 +51,9 @@ const formSchema = z.object({
     phoneNumber: z.string().regex(/^0[0-9]{9}$/, {
         message: "Phone number must be 10 digits long and start with '0'",
     }),
+    // province: z.string().min(1, { message: "Please select a province" }),
+    // district: z.string().min(1, { message: "Please select a district" }),
+    // ward: z.string().min(1, { message: "Please select a ward" }),
     address: z.string().min(1, {
         message: "Please enter your address properly",
     }),
@@ -48,8 +61,27 @@ const formSchema = z.object({
 
 export function CheckoutForm({ className, ...props }: CheckoutFormProps) {
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
+    const [provinces, setProvinces] = useState([]);
+
     const { setCheckoutData } = useCheckoutData();
     const router = useRouter();
+
+    // Fetch provinces from API
+    // useEffect(() => {
+    //     axios
+    //         .get("https://vapi.vnappmob.com/api/province")
+    //         .then((response) => {
+    //             const provinceNames = response.data.results.map(
+    //                 (province: { province_name: string }) =>
+    //                     province.province_name,
+    //             );
+
+    //             setProvinces(provinceNames);
+    //         })
+    //         .catch((error) => {
+    //             console.error("Error fetching provinces:", error);
+    //         });
+    // }, []);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -57,6 +89,9 @@ export function CheckoutForm({ className, ...props }: CheckoutFormProps) {
             fullName: "",
             email: "",
             phoneNumber: "",
+            // province: "",
+            // district: "",
+            // ward: "",
             address: "",
         },
     });
@@ -142,6 +177,48 @@ export function CheckoutForm({ className, ...props }: CheckoutFormProps) {
                         )}
                     />
 
+                    {/* Province selector */}
+                    {/* <FormField
+                        control={form.control}
+                        name="province"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Province</FormLabel>
+
+                                <Select
+                                    onValueChange={field.onChange}
+                                    defaultValue={field.value}
+                                    disabled={isLoading}
+                                >
+                                    <FormControl>
+                                        <SelectTrigger className="w-[180px]">
+                                            <SelectValue placeholder="Select a province" />
+                                        </SelectTrigger>
+                                    </FormControl>
+
+                                    <SelectContent>
+                                        <SelectGroup>
+                                            <SelectLabel>Province</SelectLabel>
+
+                                            {provinces.map(
+                                                (provinceName, index) => (
+                                                    <SelectItem
+                                                        key={index}
+                                                        value={provinceName}
+                                                    >
+                                                        {provinceName}
+                                                    </SelectItem>
+                                                ),
+                                            )}
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
+
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    /> */}
+
                     <FormField
                         control={form.control}
                         name="address"
@@ -158,12 +235,21 @@ export function CheckoutForm({ className, ...props }: CheckoutFormProps) {
                         )}
                     />
 
-                    <Button type="submit" disabled={isLoading}>
-                        {isLoading && (
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        )}
-                        Payment
-                    </Button>
+                    <div className="flex justify-between">
+                        <Link href="/cart">
+                            <Button variant="secondary">
+                                <ChevronLeft className="mr-1" />
+                                Back to Cart
+                            </Button>
+                        </Link>
+
+                        <Button type="submit" disabled={isLoading}>
+                            {isLoading && (
+                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            )}
+                            Go to Payment
+                        </Button>
+                    </div>
                 </form>
             </Form>
         </div>
