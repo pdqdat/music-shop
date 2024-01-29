@@ -2,14 +2,22 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
 interface CheckoutDataStore {
-    fullName: string;
+    firstName: string;
+    lastName: string;
     email: string;
     phoneNumber: string;
+    city: string;
+    district: string;
+    ward: string;
     address: string;
     setCheckoutData: (
-        fullName: string,
+        firstName: string,
+        lastName: string,
         email: string,
         phoneNumber: string,
+        city: string,
+        district: string,
+        ward: string,
         address: string,
     ) => void;
 }
@@ -17,22 +25,48 @@ interface CheckoutDataStore {
 const useCheckoutData = create(
     persist<CheckoutDataStore>(
         (set, get) => ({
-            fullName: "",
+            firstName: "",
+            lastName: "",
             email: "",
             phoneNumber: "",
+            city: "",
+            district: "",
+            ward: "",
             address: "",
 
             setCheckoutData: (
-                fullName: string,
+                firstName: string,
+                lastName: string,
                 email: string,
                 phoneNumber: string,
+                city: string,
+                district: string,
+                ward: string,
                 address: string,
             ) => {
-                set({ fullName, email, phoneNumber, address });
+                set({
+                    firstName,
+                    lastName,
+                    email,
+                    phoneNumber,
+                    city,
+                    district,
+                    ward,
+                    address,
+                });
             },
 
             clearCheckoutData: () => {
-                set({ fullName: "", email: "", phoneNumber: "", address: "" });
+                set({
+                    firstName: "",
+                    lastName: "",
+                    email: "",
+                    phoneNumber: "",
+                    city: "",
+                    district: "",
+                    ward: "",
+                    address: "",
+                });
             },
         }),
         {

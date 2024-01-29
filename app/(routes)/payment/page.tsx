@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Link from "next/link";
 
 // Hooks
@@ -32,10 +31,7 @@ export const revalidate = 0;
 
 const CartPage = () => {
     const [isMounted, setIsMounted] = useState(false);
-    const cart = useCart();
-    const { fullName, email, phoneNumber, address } = useCheckoutData();
-
-    const paymentMethod = "Momo";
+    
 
     useEffect(() => {
         setIsMounted(true);
@@ -45,53 +41,35 @@ const CartPage = () => {
         return null;
     }
 
-    const handleClick = () => {
-        const orderInfo = {
-            fullName,
-            email,
-            phoneNumber,
-            address,
-            items: cart.items,
-            paymentMethod,
-        };
-        console.log(orderInfo);
-
-        // axios
-        //     .post("http://172.16.1.179:8080/payment", orderInfo)
-        //     .then((response) => {
-        //         console.log(response);
-        //     })
-        //     .catch(() => {
-        //         toast.error("Something went wrong! Please try again.");
-        //     });
-    };
-
     return (
         <div>
             <Container>
                 <div className="px-4 py-16 sm:px-6 lg:px-8">
-                    <h1 className="text-3xl font-bold ">Summary & Payment</h1>
+                    <h1 className="text-3xl font-bold ">Summary and Payment</h1>
 
                     <div className="mt-12 gap-x-12 lg:grid lg:grid-cols-12 lg:items-start">
                         <div className="lg:col-span-7">
-                            <Tabs defaultValue="cod" className="">
+                            <Tabs defaultValue="fundiin" className="">
                                 <TabsList className="grid w-full grid-cols-3">
-                                    <TabsTrigger value="cod">COD</TabsTrigger>
+                                    <TabsTrigger value="card">
+                                        Credit card
+                                    </TabsTrigger>
                                     <TabsTrigger value="fundiin">
                                         Fundiin
                                     </TabsTrigger>
                                     <TabsTrigger value="momo">Momo</TabsTrigger>
                                 </TabsList>
 
-                                <TabsContent value="cod">
+                                <TabsContent value="card">
                                     <Card>
                                         <CardHeader>
                                             <CardTitle>
-                                                Cash on Delivery
+                                                Creadit card
                                             </CardTitle>
 
                                             <CardDescription>
-                                                Pay with cash upon delivery.
+                                                This payment method will be
+                                                available soon
                                             </CardDescription>
                                         </CardHeader>
 
@@ -105,6 +83,7 @@ const CartPage = () => {
                                                     id="cardNumber"
                                                     autoFocus
                                                     placeholder="1234 1234 1234 1234"
+                                                    disabled
                                                 />
                                             </div>
 
@@ -116,6 +95,7 @@ const CartPage = () => {
                                                 <Input
                                                     id="expiration"
                                                     placeholder="MM / YY"
+                                                    disabled
                                                 />
                                             </div>
 
@@ -125,12 +105,15 @@ const CartPage = () => {
                                                 <Input
                                                     id="cvc"
                                                     placeholder="CVC"
+                                                    disabled
                                                 />
                                             </div>
                                         </CardContent>
 
                                         <CardFooter>
-                                            <Button className="w-full">Place my Order</Button>
+                                            <Button className="w-full" disabled>
+                                                Place my Order
+                                            </Button>
                                         </CardFooter>
                                     </Card>
                                 </TabsContent>
@@ -157,14 +140,17 @@ const CartPage = () => {
                                             <CardTitle>Momo</CardTitle>
 
                                             <CardDescription>
-                                                Pay with Momo.
+                                                This payment method will be
+                                                available soon
                                             </CardDescription>
                                         </CardHeader>
 
                                         <CardContent className="space-y-2"></CardContent>
 
                                         <CardFooter>
-                                            <Button className="w-full">Place my Order</Button>
+                                            <Button className="w-full" disabled>
+                                                Place my Order
+                                            </Button>
                                         </CardFooter>
                                     </Card>
                                 </TabsContent>

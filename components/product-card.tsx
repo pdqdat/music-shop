@@ -22,6 +22,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "./ui/card";
 import { Badge } from "@/components/ui/badge";
 import Currency from "@/components/currency";
+import { Separator } from "@/components/ui/separator";
 
 interface ProductCard {
     data: Product;
@@ -121,14 +122,14 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
                     )}
 
                     {/* Price */}
-                    <div className="flex w-full items-center justify-between border-t pt-2">
+                    <div className="flex w-full items-center justify-between space-x-2 overflow-hidden border-t pt-2">
                         <Currency value={data?.price} className="text-lg" />
 
                         {/* Pre-sale price */}
                         {isInJanuarySale && (
                             <Currency
-                                value={data?.price + 100}
-                                className="text-lg text-muted-foreground line-through"
+                                value={data?.price + 2000000}
+                                className="text-sm font-semibold text-muted-foreground line-through"
                             />
                         )}
                     </div>

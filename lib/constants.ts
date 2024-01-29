@@ -14,7 +14,8 @@ export const products: Product[] = [
     {
         id: "1",
         name: "Taylor 112ce-S Grand Concert Electro Acoustic, Sapele",
-        price: 976,
+        price: 100000,
+        // price: 24000000,
         images: [
             "/taylor/taylor1.png",
             "/taylor/taylor2.png",
@@ -29,7 +30,8 @@ export const products: Product[] = [
     {
         id: "2",
         name: "Fender Aerodyne Special Stratocaster HSS, Dolphin Gray Metallic",
-        price: 999,
+        price: 200000,
+        // price: 25000000,
         images: [
             "/fender/fender1.png",
             "/fender/fender2.png",
@@ -46,7 +48,8 @@ export const products: Product[] = [
     {
         id: "3",
         name: "Pioneer DJ DDJ-FLX10 Digital DJ Controller",
-        price: 1469,
+        price: 300000,
+        // price: 36000000,
         images: [
             "/pioneer/pioneer1.png",
             "/pioneer/pioneer2.png",
@@ -63,7 +66,7 @@ export const products: Product[] = [
     {
         id: "4",
         name: "Fender Acoustasonic Player Telecaster, Butterscotch Blonde",
-        price: 679,
+        price: 16600000,
         images: [
             "/fenderA/fenderA1.png",
             "/fenderA/fenderA2.png",
@@ -79,7 +82,7 @@ export const products: Product[] = [
     {
         id: "5",
         name: "Yamaha YC61 Stage Keyboard and Drawbar Organ",
-        price: 1499,
+        price: 36700000,
         images: [
             "/keyboard/keyboard1.png",
             "/keyboard/keyboard2.png",

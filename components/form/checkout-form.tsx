@@ -42,8 +42,11 @@ import useCheckoutData from "@/hooks/use-checkout";
 interface CheckoutFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const formSchema = z.object({
-    fullName: z.string().min(1, {
-        message: "Please enter your full name properly",
+    firstName: z.string().min(1, {
+        message: "Please enter your first name",
+    }),
+    lastName: z.string().min(1, {
+        message: "Please enter your last name",
     }),
     email: z.string().email({
         message: "Invalid email address",
@@ -51,9 +54,9 @@ const formSchema = z.object({
     phoneNumber: z.string().regex(/^0[0-9]{9}$/, {
         message: "Phone number must be 10 digits long and start with '0'",
     }),
-    // province: z.string().min(1, { message: "Please select a province" }),
-    // district: z.string().min(1, { message: "Please select a district" }),
-    // ward: z.string().min(1, { message: "Please select a ward" }),
+    province: z.string().min(1, { message: "Please select a province" }),
+    district: z.string().min(1, { message: "Please select a district" }),
+    ward: z.string().min(1, { message: "Please select a ward" }),
     address: z.string().min(1, {
         message: "Please enter your address properly",
     }),
@@ -86,12 +89,13 @@ export function CheckoutForm({ className, ...props }: CheckoutFormProps) {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            fullName: "",
+            firstName: "",
+            lastName: "",
             email: "",
             phoneNumber: "",
-            // province: "",
-            // district: "",
-            // ward: "",
+            province: "",
+            district: "",
+            ward: "",
             address: "",
         },
     });
@@ -100,12 +104,17 @@ export function CheckoutForm({ className, ...props }: CheckoutFormProps) {
         setIsLoading(true);
 
         setCheckoutData(
-            values.fullName,
+            values.firstName,
+            values.lastName,
             values.email,
             values.phoneNumber,
+            values.province,
+            values.district,
+            values.ward,
             values.address,
         );
         router.push("/payment");
+        // console.log(values);
 
         // setTimeout(() => {
         //     setIsLoading(false);
@@ -119,25 +128,46 @@ export function CheckoutForm({ className, ...props }: CheckoutFormProps) {
                     onSubmit={form.handleSubmit(onSubmit)}
                     className="grid gap-4"
                 >
-                    <FormField
-                        control={form.control}
-                        name="fullName"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Full name</FormLabel>
+                    <div className="grid grid-cols-2 space-x-4">
+                        <FormField
+                            control={form.control}
+                            name="firstName"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>First name</FormLabel>
 
-                                <FormControl>
-                                    <Input
-                                        {...field}
-                                        disabled={isLoading}
-                                        autoFocus
-                                    />
-                                </FormControl>
+                                    <FormControl>
+                                        <Input
+                                            {...field}
+                                            disabled={isLoading}
+                                            autoFocus
+                                        />
+                                    </FormControl>
 
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField
+                            control={form.control}
+                            name="lastName"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Last name</FormLabel>
+
+                                    <FormControl>
+                                        <Input
+                                            {...field}
+                                            disabled={isLoading}
+                                        />
+                                    </FormControl>
+
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    </div>
 
                     <FormField
                         control={form.control}
@@ -218,6 +248,65 @@ export function CheckoutForm({ className, ...props }: CheckoutFormProps) {
                             </FormItem>
                         )}
                     /> */}
+
+                    <div className="grid grid-cols-1 space-x-0 space-y-0 md:grid-cols-3 md:space-x-4">
+                        <FormField
+                            control={form.control}
+                            name="province"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Province/City</FormLabel>
+
+                                    <FormControl>
+                                        <Input
+                                            {...field}
+                                            disabled={isLoading}
+                                        />
+                                    </FormControl>
+
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField
+                            control={form.control}
+                            name="district"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>District</FormLabel>
+
+                                    <FormControl>
+                                        <Input
+                                            {...field}
+                                            disabled={isLoading}
+                                        />
+                                    </FormControl>
+
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField
+                            control={form.control}
+                            name="ward"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Ward</FormLabel>
+
+                                    <FormControl>
+                                        <Input
+                                            {...field}
+                                            disabled={isLoading}
+                                        />
+                                    </FormControl>
+
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    </div>
 
                     <FormField
                         control={form.control}

@@ -46,7 +46,7 @@ const useCart = create(
                     items: [...get().items.filter((item) => item.id !== id)],
                 });
 
-                toast("Item removed from cart.");
+                toast("Item removed from cart");
             },
 
             increaseQuantity: (id: string) => {
@@ -70,7 +70,7 @@ const useCart = create(
                     ),
                 }));
 
-                toast("Item quantity updated.");
+                toast("Item quantity updated");
             },
 
             removeAll: () => set({ items: [] }),

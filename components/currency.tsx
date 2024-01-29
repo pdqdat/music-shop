@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
-const formatter = new Intl.NumberFormat("en-US", {
+const formatter = new Intl.NumberFormat("vi-VN", {
     style: "currency",
-    currency: "USD",
+    currency: "VND",
 });
 
 interface CurrencyProps {
