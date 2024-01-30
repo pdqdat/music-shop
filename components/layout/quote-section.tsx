@@ -14,7 +14,7 @@ const QuoteSection = () => {
                 <blockquote className="space-y-2 text-center">
                     <p className="text-2xl font-bold lg:text-4xl">
                         &ldquo;One good thing about music, when it hits you, you
-                        fell no pain.&rdquo;
+                        feel no pain.&rdquo;
                     </p>
 
                     <footer className="text-base font-medium lg:text-lg">
