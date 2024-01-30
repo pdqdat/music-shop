@@ -1,7 +1,17 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import axios from "axios";
 
 // Constants
 import { products } from "@/lib/constants";
+
+// Types
+import { Product } from "@/types";
+
+// Hooks
+import { useInfoStore } from "@/hooks/use-info";
 
 // Components
 import Container from "@/components/container";
@@ -20,7 +30,30 @@ import { Button } from "@/components/ui/button";
 import SeduceSection from "@/components/layout/seduce-section";
 
 const ProductPage = ({ params }: { params: { productID: string } }) => {
-    const product = products.find((product) => product.id === params.productID);
+    // const product = products.find((product) => product.id === params.productID);
+    const [product, setProduct] = useState<Product | null>(null);
+    const categories = useInfoStore((state) => state.categories);
+    const brands = useInfoStore((state) => state.brands);
+
+    useEffect(() => {
+        axios
+            .get(
+                `http://localhost:8080/collection/api/get-info/${params.productID}`,
+            )
+            .then((response) => {
+                if (response.data.status === "SUCCESS") {
+                    setProduct(response.data.data);
+                }
+            });
+    }, [params.productID]);
+
+    // Find product category from categories list
+    const productCategory = categories.find(
+        (category) => category.id == product?.categoryId,
+    );
+    // Find product brand from brands list
+    const productBrand = brands.find((brand) => brand.id == product?.brandId);
+
     // TODO: get related products
     const relatedProducts = products.slice(0, 4);
 
@@ -59,7 +92,7 @@ const ProductPage = ({ params }: { params: { productID: string } }) => {
                         <div className="md:col-span-7">
                             <div className="relative aspect-square overflow-hidden rounded-xl border">
                                 <Image
-                                    src={product.images[0]}
+                                    src={product.imageUrl}
                                     alt="Product image"
                                     fill
                                     className="aspect-square rounded-lg object-contain duration-300 ease-in-out hover:scale-110"
@@ -70,7 +103,7 @@ const ProductPage = ({ params }: { params: { productID: string } }) => {
                         <Card className="relative mt-2 overflow-hidden md:col-span-5 lg:mt-0">
                             {/* Brand name */}
                             <div className="absolute left-0 top-0 hidden rounded-br-lg bg-muted px-2 py-1 font-semibold lg:block">
-                                Taylor
+                                {productBrand?.name}
                             </div>
 
                             <CardHeader className="mt-4 hidden lg:flex">

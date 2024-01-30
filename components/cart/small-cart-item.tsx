@@ -1,10 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-// Hooks
-
-// Icons
-
 // Types
 import { CartItem } from "@/types";
 
@@ -21,7 +17,7 @@ const SmallCartItem: React.FC<SmallCartItemProps> = ({ data }) => {
             <div className="relative aspect-square overflow-hidden rounded-xl border sm:w-24">
                 <Link href={`/product/${data.id}`}>
                     <Image
-                        src={data.images[0]}
+                        src={data.imageUrl}
                         alt="Cart item image"
                         fill
                         className="aspect-square rounded-lg object-contain duration-300 ease-in-out hover:scale-110"

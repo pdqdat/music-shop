@@ -1,15 +1,25 @@
 export interface Category {
     id: string;
     name: string;
+    description: string;
+}
+
+export interface Brand {
+    id: string;
+    name: string;
+    image: string;
 }
 
 export interface Product {
     id: string;
     name: string;
     price: number;
-    images: string[];
-    category: Category;
     stock: number;
+    sold: number;
+    brandId: string;
+    categoryId: string;
+    imageUrl: string;
+    description: string;
 }
 
 export interface CartItem extends Product {

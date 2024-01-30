@@ -1,38 +1,67 @@
+"use client";
+
+import axios from "axios";
+import { useState, useEffect } from "react";
+
+// Types
+import { Product } from "@/types";
+
+// Hooks
+import { useInfoStore } from "@/hooks/use-info";
+
 // Components
 import Container from "@/components/container";
 import HeadingSection from "@/components/layout/heading-section";
+import ProductList from "@/components/product-list";
 
 const CategoryPage = ({ params }: { params: { categoryID: string } }) => {
+    const categories = useInfoStore((state) => state.categories);
+    const category = categories.find(
+        (category) => category.id == params.categoryID,
+    );
+    // const [products, setProducts] = useState<Product | null>(null);
+    const [products, setProducts] = useState<Product[]>([]);
+
+    useEffect(() => {
+        axios
+            .post("http://localhost:8080/collection/api/category", {
+                categoryId: params.categoryID,
+            })
+            .then((response) => {
+                if (response.data.status === "SUCCESS") {
+                    setProducts(response.data.data);
+                }
+            });
+    }, [params.categoryID]);
+
     return (
         <>
-            <HeadingSection title={"Guitar"} />
+            <HeadingSection title={category?.name || ""} />
 
             <Container>
                 <div className="flex flex-col items-center space-y-8 p-24">
-                    <h1 className="text-center text-6xl font-bold">
-                        {params.categoryID}
-                    </h1>
+                    {/* <h1 className="text-center text-6xl font-bold">
+                        {category?.name}
+                    </h1> */}
+                    <ProductList
+                        title={`Temporary product list of ${category?.name}`}
+                        items={products}
+                    />
                 </div>
             </Container>
 
             {/* Description section */}
             <section
-                id="GuitarDescription"
+                id={`${category?.name}-description`}
                 className="flex justify-center bg-accent-foreground px-4 pb-6 pt-4 dark:bg-primary-foreground sm:px-6 lg:px-8"
             >
                 <Container>
                     <h1 className="text-2xl font-bold text-background dark:text-foreground">
-                        Description
+                        {category?.name}
                     </h1>
 
                     <p className=" text-background dark:text-foreground">
-                        Our huge selection of electric guitars for sale means
-                        there is something for everyone. If you’re a new player
-                        and are just starting out, we offer affordable electric
-                        guitars ideal for getting to grips with. For experienced
-                        guitarists and professionals, we offer world-class
-                        custom shop guitars and even some rare models that are
-                        bound to impress.
+                        {category?.description || "Default description"}
                     </p>
                 </Container>
             </section>

@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import React from "react";
 
 // Icons
 import { Menu } from "lucide-react";
 
-// Constants
-import { categories } from "@/lib/constants";
+// Hooks
+import { useInfoStore } from "@/hooks/use-info";
 
 // Components
 import Container from "@/components/container";
@@ -16,6 +17,9 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
+    const categories = useInfoStore((state) => state.categories);
+
+    // TODO: redirect to /category by name
     const routes = categories.map((route) => ({
         href: `/category/${route.id}`,
         label: route.name,

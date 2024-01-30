@@ -16,7 +16,7 @@ const HeadingSection = ({ title }: HeadingSectionProps) => {
                     {title}
                 </h1>
 
-                <Link href={`#${title}Description`}>
+                <Link href={`#${title}-description`}>
                     <Button
                         variant="link"
                         className="px-4 text-base font-medium text-background dark:text-foreground sm:px-6 lg:px-8"

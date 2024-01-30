@@ -33,7 +33,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
     const cart = useCart();
 
     const handleClick = () => {
-        router.push(`/product/${data?.id}`);
+        router.push(`/product/${data.id}`);
     };
 
     const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
@@ -73,7 +73,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
                         )}
 
                         <Image
-                            src={data.images?.[0]}
+                            src={data.imageUrl}
                             alt="Product image"
                             fill
                             className="aspect-square rounded-lg object-contain duration-300 ease-in-out group-hover:scale-110"
@@ -106,7 +106,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
                         </p>
 
                         <p className="text-sm text-gray-700 dark:text-gray-500">
-                            {data.category?.name}
+                            {data.categoryId}
                         </p>
                     </div>
                 </CardContent>
@@ -123,12 +123,12 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
 
                     {/* Price */}
                     <div className="flex w-full items-center justify-between space-x-2 overflow-hidden border-t pt-2">
-                        <Currency value={data?.price} className="text-lg" />
+                        <Currency value={data.price} className="text-lg" />
 
                         {/* Pre-sale price */}
                         {isInJanuarySale && (
                             <Currency
-                                value={data?.price + 2000000}
+                                value={data.price + 2000000}
                                 className="text-sm font-semibold text-muted-foreground line-through"
                             />
                         )}

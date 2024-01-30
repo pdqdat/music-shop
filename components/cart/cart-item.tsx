@@ -3,6 +3,7 @@ import Link from "next/link";
 
 // Hooks
 import useCart from "@/hooks/use-cart";
+import { useInfoStore } from "@/hooks/use-info";
 
 // Icons
 import { X, Minus, Plus } from "lucide-react";
@@ -21,6 +22,7 @@ interface CartItemProps {
 
 const CartItem: React.FC<CartItemProps> = ({ data }) => {
     const cart = useCart();
+    const categories = useInfoStore((state) => state.categories);
 
     const onRemove = () => {
         cart.removeItem(data.id);
@@ -34,12 +36,16 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
         cart.decreaseQuantity(data.id);
     };
 
+    // Find product category from categories list
+    const productCategory =
+        categories.find((category) => category.id == data?.categoryId);
+
     return (
         <li className="flex border-b py-6">
             <div className="relative aspect-square w-24 overflow-hidden rounded-xl border sm:w-48">
                 <Link href={`/product/${data.id}`}>
                     <Image
-                        src={data.images[0]}
+                        src={data.imageUrl}
                         alt="Cart item image"
                         fill
                         className="aspect-square rounded-lg object-contain duration-300 ease-in-out hover:scale-110"
@@ -67,7 +73,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
                     <div className="mt-1 flex text-sm">
                         <div className="ml-4 border-l pl-4">
                             <p className="text-muted-foreground">
-                                {data.category.name}
+                                {productCategory?.name}
                             </p>
 
                             {/* Quantity controllers */}
