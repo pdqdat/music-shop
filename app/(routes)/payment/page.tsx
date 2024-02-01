@@ -26,6 +26,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FundiinForm } from "@/components/form/fundiin-form";
+import { MomoForm } from "@/components/form/momo-form";
 
 export const revalidate = 0;
 
@@ -49,14 +50,16 @@ const CartPage = () => {
 
                     <div className="mt-12 gap-x-12 lg:grid lg:grid-cols-12 lg:items-start">
                         <div className="lg:col-span-7">
-                            <Tabs defaultValue="fundiin" className="">
+                            <Tabs defaultValue="fundiin">
                                 <TabsList className="grid w-full grid-cols-3">
                                     <TabsTrigger value="card">
                                         Credit card
                                     </TabsTrigger>
+
                                     <TabsTrigger value="fundiin">
                                         Fundiin
                                     </TabsTrigger>
+
                                     <TabsTrigger value="momo">Momo</TabsTrigger>
                                 </TabsList>
 
@@ -140,18 +143,13 @@ const CartPage = () => {
                                             <CardTitle>Momo</CardTitle>
 
                                             <CardDescription>
-                                                This payment method will be
-                                                available soon
+                                                Pay with Momo
                                             </CardDescription>
                                         </CardHeader>
 
-                                        <CardContent className="space-y-2"></CardContent>
-
-                                        <CardFooter>
-                                            <Button className="w-full" disabled>
-                                                Place my Order
-                                            </Button>
-                                        </CardFooter>
+                                        <CardContent className="space-y-2">
+                                            <MomoForm/>
+                                        </CardContent>
                                     </Card>
                                 </TabsContent>
                             </Tabs>

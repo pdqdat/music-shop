@@ -38,7 +38,7 @@ import {
     DialogTitle,
 } from "@/components/ui/dialog";
 
-interface FundiinFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface MomoFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const formSchema = z.object({
     type: z.enum(["website", "qr"], {
@@ -46,7 +46,7 @@ const formSchema = z.object({
     }),
 });
 
-export function FundiinForm({ className, ...props }: FundiinFormProps) {
+export function MomoForm({ className, ...props }: MomoFormProps) {
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const [qrCodeUrl, setQrCodeUrl] = React.useState<string | null>(null);
     const [dialogOpen, setDialogOpen] = React.useState(false);
@@ -72,7 +72,7 @@ export function FundiinForm({ className, ...props }: FundiinFormProps) {
         quantity: item.quantity,
     }));
 
-    const paymentMethod = "FUNDIIN";
+    const paymentMethod = "MOMO";
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -174,7 +174,7 @@ export function FundiinForm({ className, ...props }: FundiinFormProps) {
                                             </FormControl>
 
                                             <FormLabel className="font-normal">
-                                                Website
+                                                WebPay
                                             </FormLabel>
 
                                             <FormDescription>
@@ -189,11 +189,12 @@ export function FundiinForm({ className, ...props }: FundiinFormProps) {
                                             </FormControl>
 
                                             <FormLabel className="font-normal">
-                                                QR Code Pay
+                                                QRCode Pay
                                             </FormLabel>
 
                                             <FormDescription>
-                                                Applies on SmartTv/Kiot platform
+                                                Applies on SmartTv/Kiot/Smart
+                                                Phone/Tablet platform
                                             </FormDescription>
                                         </FormItem>
                                     </RadioGroup>
@@ -217,7 +218,7 @@ export function FundiinForm({ className, ...props }: FundiinFormProps) {
             <Dialog open={dialogOpen}>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Scan QR code to pay</DialogTitle>
+                        <DialogTitle>Pay with Momo by QR code</DialogTitle>
                     </DialogHeader>
 
                     <div className="relative aspect-square w-full">

@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { MouseEventHandler } from "react";
 import { useRouter } from "next/navigation";
-import Script from "next/script";
 
 // Icons
 import { Expand, ShoppingCart } from "lucide-react";
@@ -12,10 +11,11 @@ import { Expand, ShoppingCart } from "lucide-react";
 import { Product, CartItem } from "@/types";
 
 // Constants
-import { campaigns } from "@/lib/constants";
+import { campaigns,imagePlaceholder } from "@/lib/constants";
 
 // Hooks
 import useCart from "@/hooks/use-cart";
+import { useInfoStore } from "@/hooks/use-info";
 
 // Components
 import { Button } from "@/components/ui/button";
@@ -31,6 +31,7 @@ interface ProductCard {
 const ProductCard: React.FC<ProductCard> = ({ data }) => {
     const router = useRouter();
     const cart = useCart();
+    const categories = useInfoStore((state) => state.categories);
 
     const handleClick = () => {
         router.push(`/product/${data.id}`);
@@ -47,6 +48,10 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
 
         cart.addItem(cartItem);
     };
+
+    // Find product category from categories list
+    const productCategory =
+        categories.find((category) => category.id == data?.categoryId);
 
     // Find the January Sale campaign
     const januarySaleCampaign = campaigns.find(
@@ -73,10 +78,10 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
                         )}
 
                         <Image
-                            src={data.imageUrl}
+                            src={data.imageUrl || imagePlaceholder}
                             alt="Product image"
                             fill
-                            className="aspect-square rounded-lg object-contain duration-300 ease-in-out group-hover:scale-110"
+                            className="aspect-square object-contain duration-300 ease-in-out group-hover:scale-110"
                         />
 
                         {/* Actions */}
@@ -106,7 +111,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
                         </p>
 
                         <p className="text-sm text-gray-700 dark:text-gray-500">
-                            {data.categoryId}
+                            {productCategory?.name}
                         </p>
                     </div>
                 </CardContent>

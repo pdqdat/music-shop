@@ -5,7 +5,7 @@ import Image from "next/image";
 import axios from "axios";
 
 // Constants
-import { products } from "@/lib/constants";
+import { products, imagePlaceholder } from "@/lib/constants";
 
 // Types
 import { Product } from "@/types";
@@ -92,10 +92,10 @@ const ProductPage = ({ params }: { params: { productID: string } }) => {
                         <div className="md:col-span-7">
                             <div className="relative aspect-square overflow-hidden rounded-xl border">
                                 <Image
-                                    src={product.imageUrl}
+                                    src={product.imageUrl || imagePlaceholder}
                                     alt="Product image"
                                     fill
-                                    className="aspect-square rounded-lg object-contain duration-300 ease-in-out hover:scale-110"
+                                    className="aspect-square object-contain duration-300 ease-in-out hover:scale-110"
                                 />
                             </div>
                         </div>

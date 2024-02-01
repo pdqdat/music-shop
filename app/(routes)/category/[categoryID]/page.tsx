@@ -39,14 +39,12 @@ const CategoryPage = ({ params }: { params: { categoryID: string } }) => {
             <HeadingSection title={category?.name || ""} />
 
             <Container>
-                <div className="flex flex-col items-center space-y-8 p-24">
-                    {/* <h1 className="text-center text-6xl font-bold">
-                        {category?.name}
-                    </h1> */}
-                    <ProductList
-                        title={`Temporary product list of ${category?.name}`}
-                        items={products}
-                    />
+                <div className="px-4 py-16 sm:px-6 lg:px-8">
+                    <div className="mt-12 gap-x-12 lg:grid lg:grid-cols-12 lg:items-start">
+                        <div className="lg:col-span-4 bg-red-500">Filter</div>
+
+                        <div className="lg:col-span-8 bg-blue-500">Product grid</div>
+                    </div>
                 </div>
             </Container>
 

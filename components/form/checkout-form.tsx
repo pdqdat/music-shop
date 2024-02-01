@@ -114,11 +114,6 @@ export function CheckoutForm({ className, ...props }: CheckoutFormProps) {
             values.address,
         );
         router.push("/payment");
-        // console.log(values);
-
-        // setTimeout(() => {
-        //     setIsLoading(false);
-        // }, 3000);
     }
 
     return (

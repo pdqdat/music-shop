@@ -48,7 +48,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
                         src={data.imageUrl}
                         alt="Cart item image"
                         fill
-                        className="aspect-square rounded-lg object-contain duration-300 ease-in-out hover:scale-110"
+                        className="aspect-square object-contain duration-300 ease-in-out hover:scale-110"
                     />
                 </Link>
             </div>

@@ -1,8 +1,8 @@
 -- insert category
 insert into guitar_merchant.category values ('1','Guitar');
-insert into guitar_merchant.category values ('2','Electric Guitar');
-insert into guitar_merchant.category values ('3','Bass');
-insert into guitar_merchant.category values ('4','Drum');
-insert into guitar_merchant.category values ('5','Keyboard');
-insert into guitar_merchant.category values ('6','Accessories');
-insert into guitar_merchant.category values ('7','DJ');
+
+-- insert brand
+insert into guitar_merchant.brand values ('1','Fender','https://www.fmicassets.com/Damroot/Zoom/10001/0114912349_gtr_frt_001_rr.png');
+
+-- insert product
+INSERT INTO guitar_merchant.product (id, name, price, stock, sold, category_id, branch_id, image_url, description) VALUES ('1', 'Fender American Professional II Stratocaster', '30000', '10', '1', '1', '1', 'https://www.fmicassets.com/Damroot/Zoom/10001/0114912349_gtr_frt_001_rr.png', 'description');

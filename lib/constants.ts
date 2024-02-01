@@ -1,5 +1,7 @@
 import { Product, Campaigns, Category } from "@/types";
 
+export const imagePlaceholder = "https://placehold.co/500";
+
 export const categories: Category[] = [
     { id: "1", name: "Guitar" },
     { id: "2", name: "Electric Guitar" },
