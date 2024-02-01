@@ -1,23 +1,35 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 // Hooks
 import useCart from "@/hooks/use-cart";
+
+// Types
+import { Product } from "@/types";
 
 //Components
 import Container from "@/components/container";
 import CartItem from "@/components/cart/cart-item";
 import CartSummary from "@/components/cart/cart-summary";
+import SeduceSection from "@/components/layout/seduce-section";
 
 export const revalidate = 0;
 
 const CartPage = () => {
     const [isMounted, setIsMounted] = useState(false);
     const cart = useCart();
+    const [topProducts, setTopProducts] = useState<Product[]>([]);
 
     useEffect(() => {
         setIsMounted(true);
+
+        axios
+            .get("http://localhost:8080/collection/api/get-info")
+            .then((response) => {
+                setTopProducts(response.data.data.products);
+            });
     }, []);
 
     if (!isMounted) {
@@ -49,6 +61,8 @@ const CartPage = () => {
                     </div>
                 </div>
             </Container>
+
+            <SeduceSection items={topProducts.slice(0, 4)} />
         </div>
     );
 };

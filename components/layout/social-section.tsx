@@ -7,13 +7,13 @@ import Container from "@/components/container";
 
 const SocialSection = () => {
     return (
-        <div className="flex h-32 items-center bg-primary p-8">
+        <div className="flex h-32 items-center bg-primary p-8 text-black">
             <div className="w-full">
                 <Container>
                     <div className="flex items-center justify-between">
-                        <p className="text-2xl font-bold lg:text-4xl">
+                        <h1 className="text-2xl font-bold lg:text-4xl">
                             Let&apos;s get social
-                        </p>
+                        </h1>
 
                         <div className="flex space-x-4">
                             <Link

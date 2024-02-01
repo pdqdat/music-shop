@@ -17,7 +17,7 @@ import { Card, CardContent } from "@/components/ui/card";
 const CampaignSection = () => {
     return (
         <div className="flex justify-center bg-accent-foreground dark:bg-primary-foreground">
-            <Carousel className="w-full max-w-xs md:max-w-4xl ">
+            <Carousel className="w-full max-w-xs md:max-w-4xl">
                 <CarouselContent>
                     {campaigns.map((item) => {
                         // Determine the href based on the number of products in the campaign

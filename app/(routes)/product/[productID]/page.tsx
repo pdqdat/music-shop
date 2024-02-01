@@ -30,7 +30,6 @@ import { Button } from "@/components/ui/button";
 import SeduceSection from "@/components/layout/seduce-section";
 
 const ProductPage = ({ params }: { params: { productID: string } }) => {
-    // const product = products.find((product) => product.id === params.productID);
     const [product, setProduct] = useState<Product | null>(null);
     const categories = useInfoStore((state) => state.categories);
     const brands = useInfoStore((state) => state.brands);
@@ -74,8 +73,15 @@ const ProductPage = ({ params }: { params: { productID: string } }) => {
             <Container>
                 <div className="px-4 py-16 sm:px-6 lg:px-8">
                     <h1 className="block text-2xl font-semibold lg:hidden">
-                        {product.name}
+                        {product.name}{" "}
+                        <span className="inline rounded-br-lg rounded-tl-lg bg-muted-foreground px-2 py-1 font-semibold text-background lg:hidden">
+                            {productBrand?.name}
+                        </span>
                     </h1>
+
+                    <h3 className="block text-lg text-muted-foreground lg:hidden">
+                        {productCategory?.name}
+                    </h3>
 
                     {/* Stock status */}
                     <div className="mt-1 block lg:hidden">
@@ -100,7 +106,8 @@ const ProductPage = ({ params }: { params: { productID: string } }) => {
                             </div>
                         </div>
 
-                        <Card className="relative mt-2 overflow-hidden md:col-span-5 lg:mt-0">
+                        {/* Product info card */}
+                        <Card className="relative mt-2 overflow-hidden border-transparent md:col-span-5 lg:mt-0 lg:border-border">
                             {/* Brand name */}
                             <div className="absolute left-0 top-0 hidden rounded-br-lg bg-muted px-2 py-1 font-semibold lg:block">
                                 {productBrand?.name}
@@ -108,6 +115,10 @@ const ProductPage = ({ params }: { params: { productID: string } }) => {
 
                             <CardHeader className="mt-4 hidden lg:flex">
                                 <CardTitle>{product.name}</CardTitle>
+
+                                <CardDescription className="text-base">
+                                    {productCategory?.name}
+                                </CardDescription>
 
                                 {/* Stock status */}
                                 <div className="mt-1">
@@ -141,6 +152,7 @@ const ProductPage = ({ params }: { params: { productID: string } }) => {
                             </CardFooter>
                         </Card>
 
+                        {/* Product description card */}
                         <div className="mt-2 md:col-span-7">
                             <Card>
                                 <CardHeader>
@@ -148,7 +160,7 @@ const ProductPage = ({ params }: { params: { productID: string } }) => {
                                 </CardHeader>
 
                                 <CardContent className="mt-2">
-                                    <p>Content</p>
+                                    <p>{product.description}</p>
                                 </CardContent>
                             </Card>
                         </div>

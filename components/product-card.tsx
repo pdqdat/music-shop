@@ -11,7 +11,7 @@ import { Expand, ShoppingCart } from "lucide-react";
 import { Product, CartItem } from "@/types";
 
 // Constants
-import { campaigns,imagePlaceholder } from "@/lib/constants";
+import { campaigns, imagePlaceholder } from "@/lib/constants";
 
 // Hooks
 import useCart from "@/hooks/use-cart";
@@ -50,8 +50,9 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
     };
 
     // Find product category from categories list
-    const productCategory =
-        categories.find((category) => category.id == data?.categoryId);
+    const productCategory = categories.find(
+        (category) => category.id == data?.categoryId,
+    );
 
     // Find the January Sale campaign
     const januarySaleCampaign = campaigns.find(
@@ -65,11 +66,11 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
         <>
             <Card
                 onClick={handleClick}
-                className="group relative flex flex-col justify-between duration-300 ease-in-out hover:shadow-lg"
+                className="group relative flex cursor-pointer flex-col justify-between duration-300 ease-in-out hover:shadow-lg"
             >
                 <CardContent className="space-y-4 p-3">
                     {/* Image & actions */}
-                    <div className="relative aspect-square overflow-hidden rounded-xl border">
+                    <div className="relative aspect-square cursor-default overflow-hidden rounded-xl border">
                         {/* Campaign tag */}
                         {isInJanuarySale && (
                             <div className="absolute -right-12 -top-12 z-20 flex aspect-square w-24 rotate-45 items-end justify-center bg-primary text-sm font-medium text-black">

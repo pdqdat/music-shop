@@ -40,7 +40,7 @@ const HomePage = () => {
     // );
 
     return (
-        <div>
+        <>
             <CampaignSection />
 
             <Container>
@@ -54,7 +54,7 @@ const HomePage = () => {
                     </section>
                 </div>
             </Container>
-        </div>
+        </>
     );
 };
 

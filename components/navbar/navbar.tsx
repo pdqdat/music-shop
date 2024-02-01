@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 // Icons
 import { Menu } from "lucide-react";
@@ -13,10 +13,17 @@ import { useInfoStore } from "@/hooks/use-info";
 import Container from "@/components/container";
 import SearchBar from "@/components/search-bar";
 import NavbarActions from "@/components/navbar/navbar-actions";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+    Sheet,
+    SheetContent,
+    SheetTrigger,
+    SheetHeader,
+    SheetTitle,
+} from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
+    const [isSheetOpen, setSheetOpen] = useState(false);
     const categories = useInfoStore((state) => state.categories);
 
     // TODO: redirect to /category by name
@@ -30,8 +37,8 @@ const Navbar = () => {
             <div>
                 <Container>
                     <div className="relative flex h-16 items-center px-4 sm:px-6 lg:px-8">
-                        {/* Menu icon */}
-                        <Sheet>
+                        {/* Menu icon, click to open navigation sidebar */}
+                        <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
                             <SheetTrigger asChild>
                                 <Button
                                     variant="ghost"
@@ -42,16 +49,27 @@ const Navbar = () => {
                                 </Button>
                             </SheetTrigger>
 
-                            <SheetContent side="left" className="flex flex-col">
-                                {routes.map((route) => (
+                            <SheetContent side="left">
+                                <div className="flex flex-col space-y-4">
+                                    {routes.map((route) => (
+                                        <Link
+                                            key={route.href}
+                                            href={route.href}
+                                            className="text-lg font-semibold duration-300 ease-in-out hover:translate-x-4 hover:text-primary py-1"
+                                            onClick={() => setSheetOpen(false)}
+                                        >
+                                            {route.label}
+                                        </Link>
+                                    ))}
+
                                     <Link
-                                        key={route.href}
-                                        href={route.href}
-                                        className="py-1 text-lg font-semibold duration-300 ease-in-out hover:translate-x-4 hover:text-primary"
+                                        href="/campaign/1"
+                                        className="py-1 text-lg font-bold hover:tracking-widest text-red-500 duration-300 ease-in-out hover:translate-x-4 hover:text-xl"
+                                        onClick={() => setSheetOpen(false)}
                                     >
-                                        {route.label}
+                                        SALE
                                     </Link>
-                                ))}
+                                </div>
                             </SheetContent>
                         </Sheet>
 

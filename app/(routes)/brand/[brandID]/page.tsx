@@ -35,29 +35,29 @@ import {
     SheetTitle,
 } from "@/components/ui/sheet";
 
-const CategoryPage = ({ params }: { params: { categoryID: string } }) => {
-    const categories = useInfoStore((state) => state.categories);
-    const category = categories.find(
-        (category) => category.id == params.categoryID,
+const BrandPage = ({ params }: { params: { brandID: string } }) => {
+    const brands = useInfoStore((state) => state.brands);
+    const brand = brands.find(
+        (brand) => brand.id == params.brandID,
     );
     const [products, setProducts] = useState<Product[]>([]);
 
     useEffect(() => {
         axios
-            .post("http://localhost:8080/collection/api/category", {
-                categoryId: params.categoryID,
+            .post("http://localhost:8080/collection/api/brand", {
+                categoryId: params.brandID,
             })
             .then((response) => {
                 if (response.data.status === "SUCCESS") {
                     setProducts(response.data.data);
                 }
             });
-    }, [params.categoryID]);
+    }, [params.brandID]);
 
     return (
         //! Primary breakpoint: LG
         <>
-            <HeadingSection title={category?.name || ""} />
+            <HeadingSection title={brand?.name || ""} />
 
             <Container>
                 <div className="px-4 py-16 sm:px-6 lg:px-8">
@@ -146,16 +146,16 @@ const CategoryPage = ({ params }: { params: { categoryID: string } }) => {
 
             {/* Description section */}
             <section
-                id={`${category?.name}-description`}
+                id={`${brand?.name}-description`}
                 className="bg-accent-foreground px-4 pb-6 pt-4 dark:bg-primary-foreground sm:px-6 lg:px-8"
             >
                 <Container>
                     <h1 className="text-2xl font-bold text-primary">
-                        {category?.name}
+                        {brand?.name}
                     </h1>
 
                     <p className="text-background dark:text-foreground">
-                        {category?.description || "Default description"}
+                        Default description
                     </p>
                 </Container>
             </section>
@@ -163,4 +163,4 @@ const CategoryPage = ({ params }: { params: { categoryID: string } }) => {
     );
 };
 
-export default CategoryPage;
+export default BrandPage;

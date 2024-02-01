@@ -17,7 +17,7 @@ const SeduceSection = ({ items }: SeduceSectionProps) => {
         Math.random() < 0.5 ? "Why not consider..." : "People also bought";
 
     return (
-        <div className="flex justify-center bg-muted px-4 py-8">
+        <div className="bg-muted px-4 py-8">
             <Container>
                 <ProductList title={title} items={items} />
             </Container>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Link from "next/link";
 
 // Types
@@ -20,6 +21,14 @@ const ProductList: React.FC<ProductListProps> = ({
     items,
     buttonAction,
 }) => {
+    // Control the number of products displayed at a time
+    const [displayCount, setDisplayCount] = useState(4);
+
+    // Define a function 'showMore' that increases 'displayCount' by 4 when called
+    const showMore = () => {
+        setDisplayCount(displayCount + 4);
+    };
+
     return (
         <div className="space-y-4">
             <div className="flex items-center justify-between">
@@ -37,9 +46,18 @@ const ProductList: React.FC<ProductListProps> = ({
             <Separator />
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {items.map((item) => (
+                {/* Show 4 products at a time */}
+                {items.slice(0, displayCount).map((item) => (
                     <ProductCard key={item.id} data={item} />
                 ))}
+            </div>
+
+            <div className="text-center">
+                {displayCount < items.length && (
+                    <Button variant="outline" onClick={showMore}>
+                        Show more
+                    </Button>
+                )}
             </div>
         </div>
     );
