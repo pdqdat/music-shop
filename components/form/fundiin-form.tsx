@@ -63,6 +63,9 @@ export function FundiinForm({ className, ...props }: FundiinFormProps) {
     } = useCheckoutData();
     const cartItems = useCart((state) => state.items);
 
+    const cart = useCart();
+    const { clearCheckoutData } = useCheckoutData();
+
     const totalMoney = cartItems.reduce((total, item) => {
         return total + Number(item.price * item.quantity);
     }, 0);
@@ -111,6 +114,11 @@ export function FundiinForm({ className, ...props }: FundiinFormProps) {
                 toast.success(
                     `Order placed successfully! Your order ID is ${orderId}.`,
                 );
+
+                // Empty the cart after the order is placed
+                cart.removeAll();
+                // Clear checkout data after the order is placed
+                clearCheckoutData();
 
                 if (values.type === "website") {
                     // Count down from 5 seconds

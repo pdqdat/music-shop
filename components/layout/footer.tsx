@@ -96,20 +96,29 @@ const Footer = () => {
                             our journey right in the heart of Sai Gon, Viet Nam.
                         </p>
 
-                        <div className="mt-4 flex text-white hover:text-primary">
-                            <MapPin className="mr-2" />
-                            Sai Gon, Viet Nam
-                        </div>
+                        <Link
+                            href="https://maps.app.goo.gl/Dqmc51jwzVxsBzYq9"
+                            target="_blank"
+                        >
+                            <div className="mt-4 flex text-white hover:text-primary">
+                                <MapPin className="mr-2" />
+                                District 5, Sai Gon, Viet Nam
+                            </div>
+                        </Link>
 
-                        <div className="mt-2 flex text-white hover:text-primary">
-                            <Phone className="mr-2" />
-                            (+84) 384 265 171
-                        </div>
+                        <Link href="tel:+84384265171">
+                            <div className="mt-2 flex text-white hover:text-primary">
+                                <Phone className="mr-2" />
+                                (+84) 384 265 171
+                            </div>
+                        </Link>
 
-                        <div className="mt-2 flex text-white hover:text-primary">
-                            <Mail className="mr-2" />
-                            dc.music@gmail.com
-                        </div>
+                        <Link href="mailto:dc.music@gmail.com">
+                            <div className="mt-2 flex text-white hover:text-primary">
+                                <Mail className="mr-2" />
+                                dc.music@gmail.com
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </Container>

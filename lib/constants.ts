@@ -126,3 +126,21 @@ export const campaigns: Campaigns[] = [
         productID: ["4"],
     },
 ];
+
+export const visualNav = [
+    {
+        image: "/visual-nav/guitar.png",
+        name: "Guitar",
+        href: "/category/1",
+    },
+    {
+        image: "/visual-nav/keyboard.png",
+        name: "Keyboard",
+        href: "/category/2",
+    },
+    {
+        image: "/visual-nav/drum.png",
+        name: "Drum",
+        href: "/category/3",
+    }
+]

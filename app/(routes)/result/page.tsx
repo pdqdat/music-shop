@@ -63,6 +63,7 @@ const ResultPage = () => {
             )
             .then((response) => {
                 if (response.data.status === "SUCCESS") {
+                    console.log(response.data.data);
                     setProducts(response.data.data);
                     setFilteredProducts(response.data.data);
                 }

@@ -1,8 +1,59 @@
--- insert category
-insert into guitar_merchant.category values ('1','Guitar');
+-- Truncate tables
+truncate table guitar_merchant.product;
+truncate table guitar_merchant.order_details;
+truncate table guitar_merchant.orders;
+truncate table guitar_merchant.brand;
+truncate table guitar_merchant.category;
 
--- insert brand
-insert into guitar_merchant.brand values ('1','Fender','https://www.fmicassets.com/Damroot/Zoom/10001/0114912349_gtr_frt_001_rr.png');
+-- Insert category
+insert into guitar_merchant.category values ('1', 'Guitar', 'Guitars are one of the world’s most popular instruments and many people start their journey with an acoustic guitar. You can just pick up an acoustic guitar and play, whether you want to impress an audience or are songwriting at home.');
+insert into guitar_merchant.category values ('2', 'Keyboard', 'We proudly stock popular keyboard brands like Yamaha, Roland, Korg, Moog, Novation and Akai Professional, whose products boast cutting-edge technology, a wealth of features and an inspiring playing experience.');
+insert into guitar_merchant.category values ('3', 'Drum', 'Our drum store offers a selection of the best drums and drum equipment on the market as well as a selection of other equipment including snare drums, bass drums, drumheads, complete drum kits and electronic drums.');
 
--- insert product
-INSERT INTO guitar_merchant.product (id, name, price, stock, sold, category_id, branch_id, image_url, description) VALUES ('1', 'Fender American Professional II Stratocaster', '30000', '10', '1', '1', '1', 'https://www.fmicassets.com/Damroot/Zoom/10001/0114912349_gtr_frt_001_rr.png', 'description');
+-- Insert brand
+insert into guitar_merchant.brand values ('1', 'Taylor', 'https://utfs.io/f/285066fe-4293-4f0e-bf43-043b2d4cc525-ekcafx.png');
+insert into guitar_merchant.brand values ('2', 'Fender', 'https://utfs.io/f/73ecdb1c-8969-44b7-8f7a-dd5d6ce841e5-l4z0m6.png');
+insert into guitar_merchant.brand values ('3', 'Martin', 'https://utfs.io/f/ef40d50f-630e-41fa-890f-a4480c590f73-hvrybp.png');
+
+insert into guitar_merchant.brand values ('4', 'Yamaha', 'https://utfs.io/f/223d5cbf-cb66-4f5e-a14a-25debb155058-c7c2nf.png');
+insert into guitar_merchant.brand values ('5', 'Roland', 'https://utfs.io/f/3eb6bca0-e4d8-4c93-a299-16ae556aafcb-fayxy0.png');
+insert into guitar_merchant.brand values ('6', 'Zildjian', 'https://utfs.io/f/2cce759f-561b-4722-b361-59e853ed26b2-3yhskt.png');
+insert into guitar_merchant.brand values ('7', 'Gibson', 'https://utfs.io/f/68b5fe5b-0d71-427d-aca2-d90e274a15ad-klxkby.png');
+
+
+-- Insert product
+-- Guitar
+insert into guitar_merchant.product (id, name, price, stock, sold, category_id, brand_id, image_url, description) values ('1', 'Taylor 110e Dreadnought Electro Acoustic', '23000000', '40', '60', '1', '1', 'https://utfs.io/f/c8e4d2e8-3a11-47e6-a45a-f7a5c532f8ac-d821mn.ssl.cf3.rackcdn.png', 'The Taylor 110e pairs layered walnut back and sides with a solid spruce top to make its dreadnought body. For light-to heavy strummers and flatpickers the 110e will push out deep lows, punchy mids, and clear treble notes.');
+insert into guitar_merchant.product values('2', 'Taylor 112ce-S Grand Concert Electro Acoustic, Sapele', '23600000', '23', '19', '1', '1', 'https://utfs.io/f/cf7ef7b0-314f-433d-9e73-f4ca7ab4876f-pbwnte.png', 'The Taylor 112ce-S is a welcome addition to the revered 100 series. With an artful blend of value and craftmanship, this guitar stands as a testament to Taylor’s commitment to building instruments that redefine the acoustic experience.');
+insert into guitar_merchant.product values('3', 'Fender King Vintage Dreadnought Electro-Acoustic, Aged Natural', '19900000', '18', '16', '1', '2', 'https://utfs.io/f/7de258f6-a495-43d6-9c16-85a64a241388-8conxr.png', 'Fender California Vintage models draw directly from their mid-century origins with a retro visual vibe, adding 21st century performance and a rich, refined acoustic tone - a true modern alternative with classic Fender heritage.');
+insert into guitar_merchant.product values('4', 'Martin 000-X2E Auditorium Electro Acoustic', '20800000', '25', '25', '1', '3', 'https://utfs.io/f/35d52a3d-b1be-4678-9c07-4290e4c0ec5e-8conww.png', 'The Martin 000-X2E comes supplied with a durable and water-resistant gig bag with headstock, bridge, and endpin protectors to ensure that this guitar can be kept safe and dry whilst travelling.');
+insert into guitar_merchant.product values('5', 'Martin GPC-11E Grand Performance Electro Acoustic', '36100000', '30', '6', '1', '3', 'https://utfs.io/f/8c6f8770-4cd9-4b14-99aa-e9eeea7057bd-8conw1.png', 'With a gorgeous glossed Spruce top and sapele back and sides, this solid wood Grand Performance model with cutaway is a great sounding guitar at an affordable price. This guitar is Road-ready to join you on all of your adventures!');
+
+-- Keyboard
+insert into guitar_merchant.product values('6', 'Yamaha YC61 Stage Keyboard and Drawbar Organ', '40800000', '32', '10', '2', '4', 'https://utfs.io/f/8c6f8770-4cd9-4b14-99aa-e9eeea7057bd-8conw1.png', 'The drawbar organ is considered the most expressive instrument. With the YC61, Yamaha offers a compact, lightweight, yet versatile and authentic keyboard, allowing for lively performances with the exciting sound of the VCM technology.');
+insert into guitar_merchant.product values('7', 'Yamaha DGX-670 Versatile Digital Piano Home Bundle, Black', '30100000', '32', '16', '2', '4', 'https://utfs.io/f/9b92b7b4-0b22-4d31-a256-c4278c40f63a-8conv6.png', 'The DGX-670 is a digital piano for enjoying everything from traditional piano playing to playing along with other instruments.');
+insert into guitar_merchant.product values('8', 'Yamaha P-225 Digital Piano, White', '18500000', '10', '25', '2', '4', 'https://utfs.io/f/812a0770-2c08-47de-9a5f-997fdae287fb-8conub.png', 'The Yamaha P-225 Digital Piano is an exquisitely designed instrument that brings the tactile pleasure of an acoustic piano to a digital platform. Compact, yet powerful, the P-225 is Yamaha’s dedication to unmatched quality and exceptional design.');
+insert into guitar_merchant.product values('9', 'Roland FP-10 Digital Piano', '11000000', '12', '23', '2', '5', 'https://utfs.io/f/812a0770-2c08-47de-9a5f-997fdae287fb-8conub.png', 'The FP-10 is the perfect piano for anyone needing a digital piano with a realistic acoustic piano feel, authentic sound and modern technology. The action has ivory feel, individually weighted keys and even has escapement.');
+insert into guitar_merchant.product values('10', 'Roland RP701 Digital Piano, Dark Rosewood', '33300000', '26', '12', '2', '5', 'https://utfs.io/f/32a60209-ea58-43e0-a972-20699d30f111-8contg.png', 'The Roland RP701 is Roland’s most affordable upright piano to come in a wooden spinet cabinet with a lid that can sit in either a classic or panel position.');
+
+-- Drum
+insert into guitar_merchant.product values('11', 'Yamaha SBP2F5 Stage Custom Birch 5 Piece Shell Pack w/600 Hardware, Honey Amber', '27600000', '26', '13', '3', '4', 'https://utfs.io/f/59a19add-ddeb-49b7-a11a-6ce60355ca60-8consl.png', 'Made from 100% birch wood, which has been used as a typical material for Yamaha drums for many years, is used to create same high functionality and quality as the high-end class. Stage Custom Birch is a solid drum for solid drummers.');
+insert into guitar_merchant.product values('12', 'Yamaha YSS1455 Steve Gadd Signature LTD Snare, 14x5.5in', '23500000', '16', '19', '3', '4', 'https://utfs.io/f/dd1990ff-8ea0-4fc4-8315-0cd90fb31ed8-8conrq.png', 'This outstanding snare drum has been designed and developed in cooperation with legendary drum artist Steve Gadd.');
+insert into guitar_merchant.product values('13', 'Roland TD-07DMK V-Drums Electronic Drum Kit', '17500000', '16', '16', '3', '5', 'https://utfs.io/f/e1d1b12a-b4b5-4f88-a1cc-f0041f38d7bc-8conqv.png', 'The TD-07DMK is an 8-piece drum kit, featuring all mesh pads, premium cymbals pads and a double-pedal compatible bass drum pad. With a PDX-8 for the snare, PDX-6A for the x3 toms, a KD-2 Kick Pad, CY-5 for the Crash.');
+insert into guitar_merchant.product values('14', 'Zildjian A Custom Crash 16in', '8200000', '10', '17', '3', '6', 'https://utfs.io/f/16259f33-e846-4db7-977a-1adebef84f5a-p77m1d.png', 'The Zildjian A Custom Crash is natural and bright with great overtones. It delivers the modern, sophisticated sound you expect from the world leader in cymbal manufacturing.');
+insert into guitar_merchant.product values('15', 'Zildjian A Custom EFX Crash 18in', '10200000', '14', '14', '3', '6', 'https://utfs.io/f/4a763f84-4ecd-4f4d-b841-6fef7e0eb2ca-p77m28.png', 'This special effects crash cymbal has a unique set of laser generated "cut outs" that allow it to produce a quick, dry, and trashy sound used for accenting and punctuating. The brilliant finish makes this "must have" shimmer like any A Custom.');
+insert into guitar_merchant.product values('16', 'Zildjian K Constantinople Renaissance Ride 20in', '17400000', '20', '9', '3', '6', 'https://utfs.io/f/4c5db2db-3dc0-448b-9732-f55489da1e06-p77m33.png', 'Zildjian K Constantinople Renaissance Ride (20in)');
+
+-- Guitar
+insert into guitar_merchant.product values('17', 'Fender Acoustasonic Player Telecaster, Brushed Black', '29000000', '26', '11', '1', '2', 'https://utfs.io/f/4979a11d-667e-44c6-990b-e6a42f840cf7-p77m3y.png', 'The Fender Acoustasonic Telecaster lets you get the best of both worlds - combining the resonance and warmth of a hollow body with the playability and tonal options of an electric guitar.');
+insert into guitar_merchant.product values('18', 'Fender American Performer Stratocaster HSS, Rosewood, 3 Tone Sunburst', '39000000', '20', '20', '1', '2', 'https://utfs.io/f/97bf21f4-a52c-48b6-b9de-494b29be89f9-p77m4t.png', 'Staying true to the classic design, the Alder body feels tight, resonant, and comfortable, while the classic and robust satin 3 Tone Sunburst urethane finish ensures that the guitar not only looks the part, but is also prepared for years of ownership.');
+insert into guitar_merchant.product values('19', 'Gibson Les Paul Standard 60s, Bourbon Burst', '76800000', '5', '1', '1', '7', 'https://utfs.io/f/df15a83c-d809-4f67-8022-39f686f9fe06-p77m5o.png', 'The Gibson Les Paul Standard 60s pays tribute to Gibson’s golden era. It has a slim taper 60s-style mahogany neck topped with a 22-fret fingerboard with a 12" radius made from rosewood, and an ABR-1 Tune-O-Matic bridge for tuning stability.');
+insert into guitar_merchant.product values('20', 'Gibson 80s Flying V, Ebony', '49900000', '10', '5', '1', '7', 'https://utfs.io/f/f1f1de8b-a8bb-41a1-ad3e-b9388a1c97dc-p77m6j.png', 'The Gibson 80s Flying V in Ebony pays homage to a legendary 1984 model, merging iconic design with powerful sound and sustain.');
+insert into guitar_merchant.product values('21', 'Gibson Custom Colour Series Les Paul Standard 50s, Pelham Blue', '76800000', '4', '1', '1', '7', 'https://utfs.io/f/4d6a0e21-bfb6-4d97-8e0c-fcd3e7a2fcc0-p77m7e.png', 'This Gibson Les Paul Standard 50s, part of the stunning Custom Colours series, represents an intersection of past innovation and contemporary artistry. The guitar exudes legacy, an ode to Gibson’s golden era.');
+insert into guitar_merchant.product values('22', 'Taylor 214ce-K DLX Grand Auditorium Electro Acoustic, Koa', '49100000', '13', '13', '1', '1', 'https://utfs.io/f/99b62cbb-f112-4a7e-90ad-62e8fb294953-p77m89.png', 'Taylor has upgraded its 214ce-K to bring it up to the level of its 300 series. One of the key new features is the Expression System, a natural and transparent pickup system which you can normally only find in the 300 series and above.');
+insert into guitar_merchant.product values('23', 'Taylor TS-BTe Taylor Swift Baby Taylor Dreadnought Electro Acoustic', '16000000', '16', '10', '1', '1', 'https://utfs.io/f/46847b8f-3e69-4199-b87b-0697ba540598-p77m94.png', 'The Taylor Swift Baby Taylor-e lets you take to the stage just like Taylor herself thanks to its ES-T electronics! A volume and tone control and built-in digital tuner are all you need to plug in and play.');
+
+-- Keyboard
+insert into guitar_merchant.product values('24', 'Roland GO:Keys 61 Key Music Creation Keyboard', '6900000', '15', '10', '2', '5', 'https://utfs.io/f/78c970a5-151f-4a92-ae94-9ceb27e66445-p77ms2.png', 'The Roland GO:Keys boasts the widest variety of onboard sounds in the GO Series, with a whopping 500 instruments and 128 note polyphony. Derived from Roland’s acclaimed pro synthesizers, the GO:Keys has a sound library that caters for everyone.');
+
+

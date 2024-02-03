@@ -5,7 +5,7 @@ import { MouseEventHandler } from "react";
 import { useRouter } from "next/navigation";
 
 // Icons
-import { Expand, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 
 // Types
 import { Product, CartItem } from "@/types";
@@ -22,7 +22,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "./ui/card";
 import { Badge } from "@/components/ui/badge";
 import Currency from "@/components/currency";
-import { Separator } from "@/components/ui/separator";
 
 interface ProductCard {
     data: Product;
@@ -54,8 +53,6 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
     const productCategory = categories.find(
         (category) => category.id == data?.categoryId,
     );
-    // Find product brand from brands list
-    const productBrand = brands.find((brand) => brand.id == data?.brandId);
 
     // Find the January Sale campaign
     const januarySaleCampaign = campaigns.find(
@@ -85,17 +82,13 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
                             src={data.imageUrl || imagePlaceholder}
                             alt="Product image"
                             fill
+                            loading="lazy"
                             className="aspect-square object-contain duration-300 ease-in-out group-hover:scale-110"
                         />
 
                         {/* Actions */}
                         <div className="absolute bottom-5 w-full px-6 opacity-0 transition duration-300 ease-in-out group-hover:opacity-100">
                             <div className="flex justify-center gap-x-6">
-                                {/* TODO: Preview dialog */}
-                                <Button variant="secondary" size="icon">
-                                    <Expand size={20} />
-                                </Button>
-
                                 <Button
                                     onClick={onAddToCart}
                                     size="icon"

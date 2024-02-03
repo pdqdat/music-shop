@@ -20,6 +20,7 @@ interface CheckoutDataStore {
         ward: string,
         address: string,
     ) => void;
+    clearCheckoutData: () => void;
 }
 
 const useCheckoutData = create(

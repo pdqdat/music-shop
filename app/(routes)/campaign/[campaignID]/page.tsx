@@ -1,16 +1,23 @@
-import Image from "next/image";
+"use client";
+
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 // Types
 import { Product } from "@/types";
 
 // Constants
-import { campaigns, products } from "@/lib/constants";
+import { campaigns } from "@/lib/constants";
 
 // Components
 import Container from "@/components/container";
-import ProductCard from "@/components/product-card";
+import ProductList from "@/components/product-list";
+import HeadingSection from "@/components/layout/heading-section";
 
 const ProductPage = ({ params }: { params: { campaignID: string } }) => {
+    const [products, setProducts] = useState<Product[]>([]);
+
     // Find the campaign based on the campaignID
     const campaign = campaigns.find(
         (campaign) => campaign.id === params.campaignID,
@@ -19,13 +26,28 @@ const ProductPage = ({ params }: { params: { campaignID: string } }) => {
     if (!campaign)
         return (
             <Container>
-                <div className="flex flex-col items-center space-y-8 p-24">
+                <div className="flex flex-col items-center px-4 py-24 sm:px-6 lg:px-8">
                     <h1 className="text-center text-6xl font-bold">
                         404 | Campaign not found
                     </h1>
                 </div>
             </Container>
         );
+
+    let myuuid = uuidv4();
+
+    useEffect(() => {
+        axios
+            .post("http://localhost:8080/collection/api/category", {
+                categoryId: "1",
+                request_id: myuuid,
+            })
+            .then((response) => {
+                if (response.data.status === "SUCCESS") {
+                    setProducts(response.data.data);
+                }
+            });
+    }, []);
 
     // Filter the products based on the campaign's productID
     const campaignProducts = campaign.productID
@@ -35,19 +57,18 @@ const ProductPage = ({ params }: { params: { campaignID: string } }) => {
         .filter((product): product is Product => product !== undefined);
 
     return (
-        <Container>
-            <div className="px-8 py-20">
-                <h1 className="pb-4 text-center text-6xl font-bold">
-                    {campaign.name}
-                </h1>
+        <>
+            <HeadingSection title={campaign.name} aboutButton={false} />
 
-                <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-                    {campaignProducts.map((item) => (
-                        <ProductCard key={item?.id} data={item} />
-                    ))}
+            <Container>
+                <div className="px-4 py-16 sm:px-6 lg:px-8">
+                    <ProductList
+                        title="Enjoy great discounts on your favorite products"
+                        items={campaignProducts}
+                    />
                 </div>
-            </div>
-        </Container>
+            </Container>
+        </>
     );
 };
 
