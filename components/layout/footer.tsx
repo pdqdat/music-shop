@@ -10,7 +10,7 @@ import Container from "@/components/container";
 import { Separator } from "@/components/ui/separator";
 
 // Icons
-import { Music } from "lucide-react";
+import { MapPin, Phone, Mail, Music } from "lucide-react";
 
 const Footer = () => {
     const categories = useInfoStore((state) => state.categories);
@@ -69,12 +69,47 @@ const Footer = () => {
                         <h1 className="mb-4 text-2xl font-bold text-primary">
                             Help & Support
                         </h1>
+
+                        <ul>
+                            <li className="cursor-pointer text-lg font-medium text-white duration-300 ease-in-out hover:text-primary">
+                                FAQs
+                            </li>
+                            <li className="cursor-pointer text-lg font-medium text-white duration-300 ease-in-out hover:text-primary">
+                                Privacy Policy
+                            </li>
+                            <li className="cursor-pointer text-lg font-medium text-white duration-300 ease-in-out hover:text-primary">
+                                Terms & Conditions
+                            </li>
+                        </ul>
                     </div>
 
                     <div>
                         <h1 className="mb-4 text-2xl font-bold text-primary">
                             About Us
                         </h1>
+
+                        <p className="text-white">
+                            DC Music was founded by two students who are
+                            passionate about music and want to share our passion
+                            with the world. We are dedicated to providing the
+                            best quality products and services. Come join us on
+                            our journey right in the heart of Sai Gon, Viet Nam.
+                        </p>
+
+                        <div className="mt-4 flex text-white hover:text-primary">
+                            <MapPin className="mr-2" />
+                            Sai Gon, Viet Nam
+                        </div>
+
+                        <div className="mt-2 flex text-white hover:text-primary">
+                            <Phone className="mr-2" />
+                            (+84) 384 265 171
+                        </div>
+
+                        <div className="mt-2 flex text-white hover:text-primary">
+                            <Mail className="mr-2" />
+                            dc.music@gmail.com
+                        </div>
                     </div>
                 </div>
             </Container>

@@ -27,12 +27,25 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FundiinForm } from "@/components/form/fundiin-form";
 import { MomoForm } from "@/components/form/momo-form";
+import { Separator } from "@/components/ui/separator";
+import Currency from "@/components/currency";
 
 export const revalidate = 0;
 
 const CartPage = () => {
     const [isMounted, setIsMounted] = useState(false);
-    
+
+    const items = useCart((state) => state.items);
+    const totalPrice = items.reduce((total, item) => {
+        return total + Number(item.price * item.quantity);
+    }, 0);
+
+    const {
+        city,
+        district,
+        ward,
+        address,
+    } = useCheckoutData();
 
     useEffect(() => {
         setIsMounted(true);
@@ -66,9 +79,7 @@ const CartPage = () => {
                                 <TabsContent value="card">
                                     <Card>
                                         <CardHeader>
-                                            <CardTitle>
-                                                Creadit card
-                                            </CardTitle>
+                                            <CardTitle>Creadit card</CardTitle>
 
                                             <CardDescription>
                                                 This payment method will be
@@ -148,7 +159,7 @@ const CartPage = () => {
                                         </CardHeader>
 
                                         <CardContent className="space-y-2">
-                                            <MomoForm/>
+                                            <MomoForm />
                                         </CardContent>
                                     </Card>
                                 </TabsContent>
@@ -164,7 +175,33 @@ const CartPage = () => {
                             </div>
                         </div>
 
-                        <div className="mt-16 rounded-lg bg-accent px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8"></div>
+                        {/* <div className="mt-16 rounded-lg bg-accent px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8"></div> */}
+                        <Card className="mt-16 rounded-lg border-none bg-accent px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
+                            <CardTitle className="text-lg">
+                                Order Details
+                            </CardTitle>
+
+                            <CardContent>
+                                Amount:{" "}
+                                <Currency
+                                    value={totalPrice}
+                                    className="inline text-xl"
+                                />
+                            </CardContent>
+
+                            <Separator className="mb-4 bg-accent-foreground" />
+
+                            <CardTitle className="text-lg">
+                                Delivery Address
+                            </CardTitle>
+
+                            <CardContent>
+                                <p>{address}</p>
+                                <p>{ward}</p>
+                                <p>{district}</p>
+                                <p>{city}</p>
+                            </CardContent>
+                        </Card>
                     </div>
                 </div>
             </Container>

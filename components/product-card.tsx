@@ -114,11 +114,6 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
                             {data.name}
                         </p>
 
-                        {/* temp */}
-                        <span className="rounded-br-lg rounded-tl-lg bg-muted-foreground px-2 py-1 font-semibold text-background">
-                            {productBrand?.name}
-                        </span>
-
                         <p className="text-sm text-gray-700 dark:text-gray-500">
                             {productCategory?.name}
                         </p>

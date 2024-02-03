@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 
 // Icons
-import { Filter, Check, ChevronsUpDown } from "lucide-react";
+import { Check, ChevronsUpDown } from "lucide-react";
 
 // Components
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
 import {
     Command,
     CommandEmpty,
@@ -23,7 +22,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 // Types
-import { Brand } from "@/types";
+import { Brand, Category } from "@/types";
 
 // Utils
 import { cn } from "@/lib/utils";
@@ -31,86 +30,175 @@ import { cn } from "@/lib/utils";
 interface FiltersProps {
     isSwitchOn: boolean;
     setSwitchOn: (value: boolean) => void;
-    brands: Brand[];
-    brandSelectValue: string;
-    setBrandSelectValue: (value: string) => void;
+
+    brands?: Brand[];
+    brandSelectValue?: string;
+    setBrandSelectValue?: (value: string) => void;
+
+    categories?: Category[];
+    categorySelectValue?: string;
+    setCategorySelectValue?: (value: string) => void;
 }
 
 const Filters = ({
     isSwitchOn,
     setSwitchOn,
+
     brands,
     brandSelectValue,
     setBrandSelectValue,
+
+    categories,
+    categorySelectValue,
+    setCategorySelectValue,
 }: FiltersProps) => {
     const [open, setOpen] = useState(false);
 
     return (
         <>
             <Separator className="my-4" />
-            <h1 className="mb-2 font-semibold">Brands</h1>
 
-            <Popover open={open} onOpenChange={setOpen}>
-                <PopoverTrigger asChild>
-                    <Button
-                        variant="outline"
-                        role="combobox"
-                        aria-expanded={open}
-                        className="w-full justify-between"
-                    >
-                        {brandSelectValue
-                            ? brands.find(
-                                  (brand) =>
-                                      brand.name.toLowerCase() ===
-                                      brandSelectValue,
-                              )?.name
-                            : "Select brands..."}
+            {/* Brands filter */}
+            {brands && brands.length > 0 && (
+                <>
+                    <h1 className="mb-2 font-semibold">Brands</h1>
 
-                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                    </Button>
-                </PopoverTrigger>
+                    <Popover open={open} onOpenChange={setOpen}>
+                        <PopoverTrigger asChild>
+                            <Button
+                                variant="outline"
+                                role="combobox"
+                                aria-expanded={open}
+                                className="w-full justify-between"
+                            >
+                                {brandSelectValue
+                                    ? brands.find(
+                                          (brand) =>
+                                              brand.name.toLowerCase() ===
+                                              brandSelectValue,
+                                      )?.name
+                                    : "Select brands..."}
 
-                <PopoverContent className="p-0">
-                    <Command>
-                        <CommandInput placeholder="Search brands..." />
+                                <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                            </Button>
+                        </PopoverTrigger>
 
-                        <CommandEmpty>No brand found</CommandEmpty>
+                        <PopoverContent className="p-0">
+                            <Command>
+                                <CommandInput placeholder="Search brands..." />
 
-                        <CommandGroup>
-                            {brands.map((brand) => (
-                                <CommandItem
-                                    key={brand.name}
-                                    value={brand.name}
-                                    onSelect={(currentValue) => {
-                                        setBrandSelectValue(
-                                            currentValue.toLowerCase() ===
-                                                brandSelectValue
-                                                ? ""
-                                                : currentValue,
-                                        );
-                                        setOpen(false);
-                                    }}
-                                >
-                                    <Check
-                                        className={cn(
-                                            "mr-2 h-4 w-4",
-                                            brandSelectValue ===
-                                                brand.name.toLowerCase()
-                                                ? "opacity-100"
-                                                : "opacity-0",
-                                        )}
-                                    />
+                                <CommandEmpty>No brand found</CommandEmpty>
 
-                                    {brand.name}
-                                </CommandItem>
-                            ))}
-                        </CommandGroup>
-                    </Command>
-                </PopoverContent>
-            </Popover>
+                                <CommandGroup>
+                                    {brands.map((brand) => (
+                                        <CommandItem
+                                            key={brand.name}
+                                            value={brand.name}
+                                            onSelect={(currentValue) => {
+                                                if (setBrandSelectValue) {
+                                                    setBrandSelectValue(
+                                                        currentValue.toLowerCase() ===
+                                                            brandSelectValue
+                                                            ? ""
+                                                            : currentValue,
+                                                    );
+                                                }
+                                                setOpen(false);
+                                            }}
+                                        >
+                                            <Check
+                                                className={cn(
+                                                    "mr-2 h-4 w-4",
+                                                    brandSelectValue ===
+                                                        brand.name.toLowerCase()
+                                                        ? "opacity-100"
+                                                        : "opacity-0",
+                                                )}
+                                            />
 
-            <Separator className="my-4" />
+                                            {brand.name}
+                                        </CommandItem>
+                                    ))}
+                                </CommandGroup>
+                            </Command>
+                        </PopoverContent>
+                    </Popover>
 
+                    <Separator className="my-4" />
+                </>
+            )}
+
+            {/* Categories filter */}
+            {categories && categories.length > 0 && (
+                <>
+                    <h1 className="mb-2 font-semibold">Categories</h1>
+
+                    <Popover open={open} onOpenChange={setOpen}>
+                        <PopoverTrigger asChild>
+                            <Button
+                                variant="outline"
+                                role="combobox"
+                                aria-expanded={open}
+                                className="w-full justify-between"
+                            >
+                                {categorySelectValue
+                                    ? categories.find(
+                                          (category) =>
+                                              category.name.toLowerCase() ===
+                                              categorySelectValue,
+                                      )?.name
+                                    : "Select categories..."}
+
+                                <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                            </Button>
+                        </PopoverTrigger>
+
+                        <PopoverContent className="p-0">
+                            <Command>
+                                <CommandInput placeholder="Search categories..." />
+
+                                <CommandEmpty>No brand found</CommandEmpty>
+
+                                <CommandGroup>
+                                    {categories.map((category) => (
+                                        <CommandItem
+                                            key={category.name}
+                                            value={category.name}
+                                            onSelect={(currentValue) => {
+                                                if (setCategorySelectValue) {
+                                                    setCategorySelectValue(
+                                                        currentValue.toLowerCase() ===
+                                                            categorySelectValue
+                                                            ? ""
+                                                            : currentValue,
+                                                    );
+                                                }
+                                                setOpen(false);
+                                            }}
+                                        >
+                                            <Check
+                                                className={cn(
+                                                    "mr-2 h-4 w-4",
+                                                    categorySelectValue ===
+                                                        category.name.toLowerCase()
+                                                        ? "opacity-100"
+                                                        : "opacity-0",
+                                                )}
+                                            />
+
+                                            {category.name}
+                                        </CommandItem>
+                                    ))}
+                                </CommandGroup>
+                            </Command>
+                        </PopoverContent>
+                    </Popover>
+
+                    <Separator className="my-4" />
+                </>
+            )}
+
+            {/* In stock filter */}
             <div className="flex items-center space-x-2">
                 <Switch
                     id="stock-status"

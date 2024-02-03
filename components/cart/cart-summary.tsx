@@ -10,6 +10,11 @@ import useCart from "@/hooks/use-cart";
 import { Loader2 } from "lucide-react";
 
 // Components
+import {
+    Card,
+    CardDescription,
+    CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Currency from "@/components/currency";
 import { toast } from "sonner";
@@ -31,12 +36,26 @@ const CartSummary = () => {
     };
 
     return (
-        <div className="mt-16 rounded-lg bg-accent px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
-            <h2 className="text-lg font-medium">Order summary</h2>
+        <Card className="mt-16 rounded-lg border-none bg-accent px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
+            <div className="flex items-baseline justify-between">
+                <CardTitle className="text-lg">Subtotal</CardTitle>
+
+                <Currency value={totalPrice} />
+            </div>
+
+            <div className="flex items-baseline justify-between">
+                <CardTitle className="text-lg">Delivery</CardTitle>
+
+                <p className="">Free</p>
+            </div>
 
             <div className="mt-6 space-y-4">
-                <div className="flex items-center justify-between border-t border-accent-foreground pt-4">
-                    <div className="text-base font-medium">Order total</div>
+                <div className="flex items-start justify-between border-t border-accent-foreground pt-4">
+                    <div>
+                        <CardTitle className="text-lg">Total</CardTitle>
+
+                        <CardDescription>(Inc. VAT & Delivery)</CardDescription>
+                    </div>
 
                     <Currency value={totalPrice} />
                 </div>
@@ -50,7 +69,7 @@ const CartSummary = () => {
                 {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                 Go to Checkout
             </Button>
-        </div>
+        </Card>
     );
 };
 

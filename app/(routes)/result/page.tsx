@@ -1,8 +1,8 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 // Types
 import { Product } from "@/types";
@@ -34,12 +34,20 @@ import {
 } from "@/components/ui/sheet";
 import Filters from "@/components/filters";
 
-const BrandPage = ({ params }: { params: { brandID: string } }) => {
-    const brands = useInfoStore((state) => state.brands);
-    const categories = useInfoStore((state) => state.categories);
+function capitalizeFirstLetter(string: string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
-    // Get the current brand
-    const brand = brands.find((brand) => brand.id == params.brandID);
+const ResultPage = () => {
+    const searchParams = useSearchParams();
+
+    let keyword = searchParams.get("keyword");
+
+    if (keyword) {
+        keyword = capitalizeFirstLetter(keyword);
+    }
+
+    const categories = useInfoStore((state) => state.categories);
 
     const [products, setProducts] = useState<Product[]>([]);
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
@@ -48,21 +56,18 @@ const BrandPage = ({ params }: { params: { brandID: string } }) => {
 
     const [categorySelectValue, setCategorySelectValue] = useState("");
 
-    let myuuid = uuidv4();
-
     useEffect(() => {
         axios
-            .post("http://localhost:8080/collection/api/brand", {
-                brandId: params.brandID,
-                request_id: myuuid,
-            })
+            .get(
+                `http://localhost:8080/collection/api/search?keyword=${keyword}`,
+            )
             .then((response) => {
                 if (response.data.status === "SUCCESS") {
                     setProducts(response.data.data);
                     setFilteredProducts(response.data.data);
                 }
             });
-    }, [params.brandID]);
+    }, []);
 
     // Update the filtered products when the switch is toggled
     useEffect(() => {
@@ -121,7 +126,7 @@ const BrandPage = ({ params }: { params: { brandID: string } }) => {
     return (
         //! Primary breakpoint: LG
         <>
-            <HeadingSection title={brand?.name || ""} aboutButton={false} />
+            <HeadingSection title="Search Results" aboutButton={false} />
 
             <Container>
                 <div className="px-4 py-16 sm:px-6 lg:px-8">
@@ -225,24 +230,8 @@ const BrandPage = ({ params }: { params: { brandID: string } }) => {
                     </div>
                 </div>
             </Container>
-
-            {/* Description section */}
-            {/* <section
-                id={`${brand?.name}-description`}
-                className="bg-accent-foreground px-4 pb-6 pt-4 dark:bg-primary-foreground sm:px-6 lg:px-8"
-            >
-                <Container>
-                    <h1 className="text-2xl font-bold text-primary">
-                        {brand?.name}
-                    </h1>
-
-                    <p className="text-background dark:text-foreground">
-                        Default description
-                    </p>
-                </Container>
-            </section> */}
         </>
     );
 };
 
-export default BrandPage;
+export default ResultPage;

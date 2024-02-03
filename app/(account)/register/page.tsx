@@ -32,7 +32,7 @@ const RegisterPage = () => {
                             <h1 className="text-2xl font-semibold uppercase tracking-tight">
                                 Register
                             </h1>
-                            
+
                             <p className="text-sm text-muted-foreground">
                                 Create a new account to make purchases or check
                                 your order history.
@@ -47,7 +47,7 @@ const RegisterPage = () => {
                                 href="/#"
                                 className="underline underline-offset-4 hover:text-primary"
                             >
-                                Terms of Service
+                                Terms & Conditions
                             </Link>{" "}
                             and{" "}
                             <Link

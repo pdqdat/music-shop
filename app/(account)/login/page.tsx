@@ -59,7 +59,7 @@ const LoginPage = () => {
                             <h1 className="text-2xl font-semibold uppercase tracking-tight">
                                 Login
                             </h1>
-                            
+
                             <p className="text-sm text-muted-foreground">
                                 You need an account to make purchases or check
                                 your order history.
@@ -74,7 +74,7 @@ const LoginPage = () => {
                                 href="#"
                                 className="underline underline-offset-4 hover:text-primary"
                             >
-                                Terms of Service
+                                Terms & Conditions
                             </Link>{" "}
                             and{" "}
                             <Link

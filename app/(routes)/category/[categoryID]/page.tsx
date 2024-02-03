@@ -11,7 +11,7 @@ import { Product } from "@/types";
 import { useInfoStore } from "@/hooks/use-info";
 
 // Icons
-import { Filter } from "lucide-react";
+import { SlidersHorizontal } from "lucide-react";
 
 // Components
 import Container from "@/components/container";
@@ -36,10 +36,12 @@ import Filters from "@/components/filters";
 
 const CategoryPage = ({ params }: { params: { categoryID: string } }) => {
     const categories = useInfoStore((state) => state.categories);
+    const brands = useInfoStore((state) => state.brands);
+
+    // Get the current category
     const category = categories.find(
         (category) => category.id == params.categoryID,
     );
-    const brands = useInfoStore((state) => state.brands);
 
     const [products, setProducts] = useState<Product[]>([]);
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
@@ -128,7 +130,7 @@ const CategoryPage = ({ params }: { params: { categoryID: string } }) => {
                                     <CardTitle>
                                         <div className="flex items-center">
                                             Filters
-                                            <Filter className="ml-2" />
+                                            <SlidersHorizontal className="ml-2" />
                                         </div>
                                     </CardTitle>
                                 </CardHeader>
@@ -140,7 +142,7 @@ const CategoryPage = ({ params }: { params: { categoryID: string } }) => {
                                             <SheetTrigger asChild>
                                                 <Button className="flex-1">
                                                     Filters
-                                                    <Filter
+                                                    <SlidersHorizontal
                                                         className="ml-1"
                                                         size={20}
                                                     />
@@ -155,7 +157,7 @@ const CategoryPage = ({ params }: { params: { categoryID: string } }) => {
                                                     <SheetTitle>
                                                         <div className="flex items-center">
                                                             Filters
-                                                            <Filter className="ml-2" />
+                                                            <SlidersHorizontal className="ml-2" />
                                                         </div>
                                                     </SheetTitle>
                                                 </SheetHeader>

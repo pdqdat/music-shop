@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/button";
 
 interface HeadingSectionProps {
     title: string;
+    aboutButton?: boolean;
 }
 
-const HeadingSection = ({ title }: HeadingSectionProps) => {
+const HeadingSection = ({ title, aboutButton = true }: HeadingSectionProps) => {
     return (
         <div className="flex justify-center bg-accent-foreground pb-6 pt-4 dark:bg-primary-foreground">
             <Container>
@@ -16,14 +17,16 @@ const HeadingSection = ({ title }: HeadingSectionProps) => {
                     {title}
                 </h1>
 
-                <Link href={`#${title}-description`}>
-                    <Button
-                        variant="link"
-                        className="px-4 text-base font-medium text-background dark:text-foreground sm:px-6 lg:px-8"
-                    >
-                        More about {title}
-                    </Button>
-                </Link>
+                {aboutButton && (
+                    <Link href={`#${title}-description`}>
+                        <Button
+                            variant="link"
+                            className="px-4 text-base font-medium text-background dark:text-foreground sm:px-6 lg:px-8"
+                        >
+                            More about {title}
+                        </Button>
+                    </Link>
+                )}
             </Container>
         </div>
     );
