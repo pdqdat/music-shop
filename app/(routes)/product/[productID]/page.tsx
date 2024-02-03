@@ -144,7 +144,7 @@ const ProductPage = ({ params }: { params: { productID: string } }) => {
                             </CardContent>
 
                             <CardFooter className="flex-col">
-                                <Button className="w-full">Add to cart</Button>
+                                <Button className="w-full" disabled={product.stock === 0}>Add to cart</Button>
 
                                 <div className="mt-2">
                                     <p>Fundiin visibility</p>

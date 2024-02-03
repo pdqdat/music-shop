@@ -79,17 +79,17 @@ const Footer = () => {
                 </div>
             </Container>
 
-                <Separator className="my-4" />
+            <Separator className="my-4" />
 
-                <p className="text-center text-white">
-                    &copy; 2023 DC Music, Inc. All rights reserved.
-                </p>
+            <p className="text-center text-white">
+                &copy; 2023 DC Music, Inc. All rights reserved.
+            </p>
 
-                <p className="mt-4 flex justify-center space-x-2 text-white">
-                    <Music />
-                    <Music />
-                    <Music />
-                </p>
+            <p className="mt-4 flex justify-center space-x-2 text-white">
+                <Music size={15} />
+                <Music size={15} />
+                <Music size={15} />
+            </p>
         </footer>
     );
 };

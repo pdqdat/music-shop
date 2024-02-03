@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 import { cn } from "@/lib/utils";
 
@@ -42,6 +43,8 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
     const { setLoginData } = useUserStore();
 
+    let myuuid = uuidv4();
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -54,7 +57,10 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
         setIsLoading(true);
 
         axios
-            .post("http://localhost:8080/auth/api/login", values)
+            .post("http://localhost:8080/auth/api/login", {
+                request_id: myuuid,
+                ...values,
+            })
             .then((response) => {
                 const { data } = response;
                 if (data.status === "SUCCESS") {

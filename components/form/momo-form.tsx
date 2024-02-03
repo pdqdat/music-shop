@@ -6,6 +6,7 @@ import * as z from "zod";
 import axios from "axios";
 import QRCode from "qrcode";
 import Image from "next/image";
+import { v4 as uuidv4 } from "uuid";
 
 import { cn } from "@/lib/utils";
 
@@ -74,6 +75,8 @@ export function MomoForm({ className, ...props }: MomoFormProps) {
 
     const paymentMethod = "MOMO";
 
+    let myuuid = uuidv4();
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
     });
@@ -94,6 +97,7 @@ export function MomoForm({ className, ...props }: MomoFormProps) {
             paymentMethod,
             totalMoney,
             items,
+            request_id: myuuid,
         };
 
         axios

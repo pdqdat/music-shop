@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 // Types
 import { Product } from "@/types";
@@ -37,15 +38,18 @@ import {
 
 const BrandPage = ({ params }: { params: { brandID: string } }) => {
     const brands = useInfoStore((state) => state.brands);
-    const brand = brands.find(
-        (brand) => brand.id == params.brandID,
-    );
+
+    // Get the current brand
+    const brand = brands.find((brand) => brand.id == params.brandID);
     const [products, setProducts] = useState<Product[]>([]);
+
+    let myuuid = uuidv4();
 
     useEffect(() => {
         axios
             .post("http://localhost:8080/collection/api/brand", {
-                categoryId: params.brandID,
+                brandId: params.brandID,
+                request_id: myuuid,
             })
             .then((response) => {
                 if (response.data.status === "SUCCESS") {

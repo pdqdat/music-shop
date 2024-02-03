@@ -11,6 +11,7 @@ import { campaigns } from "@/lib/constants";
 
 // Components
 import CampaignSection from "@/components/layout/campaign-section";
+import BrandSection from "@/components/layout/brand-section";
 import Container from "@/components/container";
 import ProductList from "@/components/product-list";
 
@@ -50,10 +51,15 @@ const HomePage = () => {
                     </section> */}
 
                     <section id="top-products">
-                        <ProductList title="What people buy the most" items={topProducts}/>
+                        <ProductList
+                            title="What people buy the most"
+                            items={topProducts}
+                        />
                     </section>
                 </div>
             </Container>
+
+            <BrandSection />
         </>
     );
 };

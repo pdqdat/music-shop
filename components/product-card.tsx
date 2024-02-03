@@ -32,6 +32,7 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
     const router = useRouter();
     const cart = useCart();
     const categories = useInfoStore((state) => state.categories);
+    const brands = useInfoStore((state) => state.brands);
 
     const handleClick = () => {
         router.push(`/product/${data.id}`);
@@ -53,6 +54,8 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
     const productCategory = categories.find(
         (category) => category.id == data?.categoryId,
     );
+    // Find product brand from brands list
+    const productBrand = brands.find((brand) => brand.id == data?.brandId);
 
     // Find the January Sale campaign
     const januarySaleCampaign = campaigns.find(
@@ -110,6 +113,11 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
                         <p className="line-clamp-3 text-lg font-semibold">
                             {data.name}
                         </p>
+
+                        {/* temp */}
+                        <span className="rounded-br-lg rounded-tl-lg bg-muted-foreground px-2 py-1 font-semibold text-background">
+                            {productBrand?.name}
+                        </span>
 
                         <p className="text-sm text-gray-700 dark:text-gray-500">
                             {productCategory?.name}
