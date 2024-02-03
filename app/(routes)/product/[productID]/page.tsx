@@ -3,15 +3,17 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import axios from "axios";
+import { MouseEventHandler } from "react";
 
 // Constants
-import { products, imagePlaceholder } from "@/lib/constants";
+import { imagePlaceholder, relatedProducts } from "@/lib/constants";
 
 // Types
-import { Product } from "@/types";
+import { Product, CartItem } from "@/types";
 
 // Hooks
 import { useInfoStore } from "@/hooks/use-info";
+import useCart from "@/hooks/use-cart";
 
 // Components
 import Container from "@/components/container";
@@ -33,6 +35,7 @@ const ProductPage = ({ params }: { params: { productID: string } }) => {
     const [product, setProduct] = useState<Product | null>(null);
     const categories = useInfoStore((state) => state.categories);
     const brands = useInfoStore((state) => state.brands);
+    const cart = useCart();
 
     useEffect(() => {
         axios
@@ -53,8 +56,19 @@ const ProductPage = ({ params }: { params: { productID: string } }) => {
     // Find product brand from brands list
     const productBrand = brands.find((brand) => brand.id == product?.brandId);
 
-    // TODO: get related products
-    const relatedProducts = products.slice(0, 4);
+    const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
+        event.stopPropagation();
+
+        // Add the quantity property to the product
+        const cartItem: CartItem = {
+            ...product!,
+            quantity: 1,
+        };
+
+        cart.addItem(cartItem);
+    };
+
+    // TODO: Get related products
 
     if (!product)
         return (
@@ -79,7 +93,7 @@ const ProductPage = ({ params }: { params: { productID: string } }) => {
                         </span>
                     </h1>
 
-                    <h3 className="block text-lg text-muted-foreground lg:hidden">
+                    <h3 className="mt-1 block text-lg text-muted-foreground lg:hidden">
                         {productCategory?.name}
                     </h3>
 
@@ -144,17 +158,19 @@ const ProductPage = ({ params }: { params: { productID: string } }) => {
                             </CardContent>
 
                             <CardFooter className="flex-col">
-                                <Button className="w-full" disabled={product.stock === 0}>Add to cart</Button>
-
-                                <div className="mt-2">
-                                    <p>Fundiin visibility</p>
-                                </div>
+                                <Button
+                                    className="w-full"
+                                    disabled={product.stock === 0}
+                                    onClick={onAddToCart}
+                                >
+                                    Add to cart
+                                </Button>
                             </CardFooter>
                         </Card>
 
                         {/* Product description card */}
                         <div className="mt-2 md:col-span-7">
-                            <Card>
+                            <Card className="border-none shadow-none">
                                 <CardHeader>
                                     <CardTitle>Description</CardTitle>
                                 </CardHeader>

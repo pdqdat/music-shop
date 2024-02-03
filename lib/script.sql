@@ -9,6 +9,8 @@ truncate table guitar_merchant.category;
 insert into guitar_merchant.category values ('1', 'Guitar', 'Guitars are one of the world’s most popular instruments and many people start their journey with an acoustic guitar. You can just pick up an acoustic guitar and play, whether you want to impress an audience or are songwriting at home.');
 insert into guitar_merchant.category values ('2', 'Keyboard', 'We proudly stock popular keyboard brands like Yamaha, Roland, Korg, Moog, Novation and Akai Professional, whose products boast cutting-edge technology, a wealth of features and an inspiring playing experience.');
 insert into guitar_merchant.category values ('3', 'Drum', 'Our drum store offers a selection of the best drums and drum equipment on the market as well as a selection of other equipment including snare drums, bass drums, drumheads, complete drum kits and electronic drums.');
+insert into guitar_merchant.category values ('4', 'DJ', 'We offers a wide range of equipment and accessories for DJs, including turntables, mixers, controllers, etc. Whether you are a professional DJ or just starting out, our DJ collection gear will help you keep the party going all night long.');
+insert into guitar_merchant.category values ('5', 'Amplifier', 'On its own, an electric guitar may look cool and feel great to play but it won’t make a racket. Paired with the right guitar amp, an electric guitar can shake stadiums, enthral audiences and annoy neighbours.');
 
 -- Insert brand
 insert into guitar_merchant.brand values ('1', 'Taylor', 'https://utfs.io/f/285066fe-4293-4f0e-bf43-043b2d4cc525-ekcafx.png');
@@ -20,6 +22,12 @@ insert into guitar_merchant.brand values ('5', 'Roland', 'https://utfs.io/f/3eb6
 insert into guitar_merchant.brand values ('6', 'Zildjian', 'https://utfs.io/f/2cce759f-561b-4722-b361-59e853ed26b2-3yhskt.png');
 insert into guitar_merchant.brand values ('7', 'Gibson', 'https://utfs.io/f/68b5fe5b-0d71-427d-aca2-d90e274a15ad-klxkby.png');
 
+insert into guitar_merchant.brand values ('8', 'Pioneer', 'https://utfs.io/f/f187d9cc-5daa-48c1-b3a0-c8ea73e1d443-9dhn7q.png');
+
+insert into guitar_merchant.brand values ('9', 'Squier', 'https://utfs.io/f/3bfbb89b-5c62-44cb-8c4d-7ccf3d81f2ca-esntr5.png');
+
+insert into guitar_merchant.brand values ('10', 'Boss', 'https://utfs.io/f/e73a3a95-18a9-4bf6-b27a-20c64314efb2-1sxv1.png');
+insert into guitar_merchant.brand values ('11', 'Marshall', 'https://utfs.io/f/ebe8fc72-07b5-439b-a659-3f77e7f2896a-47hdam.png');
 
 -- Insert product
 -- Guitar
@@ -30,7 +38,7 @@ insert into guitar_merchant.product values('4', 'Martin 000-X2E Auditorium Elect
 insert into guitar_merchant.product values('5', 'Martin GPC-11E Grand Performance Electro Acoustic', '36100000', '30', '6', '1', '3', 'https://utfs.io/f/8c6f8770-4cd9-4b14-99aa-e9eeea7057bd-8conw1.png', 'With a gorgeous glossed Spruce top and sapele back and sides, this solid wood Grand Performance model with cutaway is a great sounding guitar at an affordable price. This guitar is Road-ready to join you on all of your adventures!');
 
 -- Keyboard
-insert into guitar_merchant.product values('6', 'Yamaha YC61 Stage Keyboard and Drawbar Organ', '40800000', '32', '10', '2', '4', 'https://utfs.io/f/8c6f8770-4cd9-4b14-99aa-e9eeea7057bd-8conw1.png', 'The drawbar organ is considered the most expressive instrument. With the YC61, Yamaha offers a compact, lightweight, yet versatile and authentic keyboard, allowing for lively performances with the exciting sound of the VCM technology.');
+insert into guitar_merchant.product values('6', 'Yamaha YC61 Stage Keyboard and Drawbar Organ', '40800000', '32', '10', '2', '4', 'https://utfs.io/f/7413ce9d-82cc-4a13-9e13-40013dcb2898-p77nnx.png', 'The drawbar organ is considered the most expressive instrument. With the YC61, Yamaha offers a compact, lightweight, yet versatile and authentic keyboard, allowing for lively performances with the exciting sound of the VCM technology.');
 insert into guitar_merchant.product values('7', 'Yamaha DGX-670 Versatile Digital Piano Home Bundle, Black', '30100000', '32', '16', '2', '4', 'https://utfs.io/f/9b92b7b4-0b22-4d31-a256-c4278c40f63a-8conv6.png', 'The DGX-670 is a digital piano for enjoying everything from traditional piano playing to playing along with other instruments.');
 insert into guitar_merchant.product values('8', 'Yamaha P-225 Digital Piano, White', '18500000', '10', '25', '2', '4', 'https://utfs.io/f/812a0770-2c08-47de-9a5f-997fdae287fb-8conub.png', 'The Yamaha P-225 Digital Piano is an exquisitely designed instrument that brings the tactile pleasure of an acoustic piano to a digital platform. Compact, yet powerful, the P-225 is Yamaha’s dedication to unmatched quality and exceptional design.');
 insert into guitar_merchant.product values('9', 'Roland FP-10 Digital Piano', '11000000', '12', '23', '2', '5', 'https://utfs.io/f/812a0770-2c08-47de-9a5f-997fdae287fb-8conub.png', 'The FP-10 is the perfect piano for anyone needing a digital piano with a realistic acoustic piano feel, authentic sound and modern technology. The action has ivory feel, individually weighted keys and even has escapement.');
@@ -55,5 +63,29 @@ insert into guitar_merchant.product values('23', 'Taylor TS-BTe Taylor Swift Bab
 
 -- Keyboard
 insert into guitar_merchant.product values('24', 'Roland GO:Keys 61 Key Music Creation Keyboard', '6900000', '15', '10', '2', '5', 'https://utfs.io/f/78c970a5-151f-4a92-ae94-9ceb27e66445-p77ms2.png', 'The Roland GO:Keys boasts the widest variety of onboard sounds in the GO Series, with a whopping 500 instruments and 128 note polyphony. Derived from Roland’s acclaimed pro synthesizers, the GO:Keys has a sound library that caters for everyone.');
+
+-- DJ
+insert into guitar_merchant.product values('25', 'Pioneer DJ DDJ-FLX10 Digital DJ Controller', '45100000', '10', '4', '4', '8', 'https://utfs.io/f/a18b081d-bbb5-4471-b59d-8bca044bcc17-6hqrpl.png', 'This 4-channel performance DJ controller for rekordbox and Serato DJ Pro includes a host of brand-new features that enable new creative possibilities, including functions you can use to easily perform mash-ups on the fly.');
+insert into guitar_merchant.product values('26', 'Pioneer DJ PLX-1000 Direct Drive Turntable', '18100000', '0', '23', '4', '8', 'https://utfs.io/f/f13be4d9-21ba-43df-9bcb-cb47264f00a5-p77msx.png', 'Focusing on creating a product with exceptional sound design, the Pioneer PLX-1000 features a heavy-mass zinc die-cast chassis, reinforced with a bottom section made of 8-mm thick resin.');
+insert into guitar_merchant.product values('27', 'Pioneer DJ DDJ-XP2 Digital DJ Controller', '9100000', '10', '14', '4', '8', 'https://utfs.io/f/81775810-0a86-42e9-ba24-cf7edb93aec4-p77mts.png', 'The DDJ-XP2 is the perfect way to add more creative control to your live performances. If you are a production DJ, a remix DJ or someone that likes to get creative, the DDJ-XP2 makes DJing far more musical.');
+insert into guitar_merchant.product values('28', 'Pioneer DJ DJM-S7 2-Channel Battle Mixer', '43000000', '10', '4', '4', '8', 'https://utfs.io/f/2ca699b6-a482-40e0-828b-152770dbf710-p77mun.png', 'The Pioneer DJM-S7 is a powerful two-channel scratch-style DJ mixer. Its design caters to open-format DJs that seamlessly and dynamically transition between musical styles.');
+insert into guitar_merchant.product values('29', 'Pioneer DJ DDJ-FLX4 Digital DJ Controller', '8500000', '0', '18', '4', '8', 'https://utfs.io/f/07f5e110-715a-4dec-aaba-42a84e0c5515-p77mvi.png', 'The Pioneer DJ DDJ-FLX4 is a DJ controller that boasts a premium, professional-quality feel and a streamlined, user-friendly design at a keen price point. The DDJ-FLX4 is a great choice if you’re wanting to learn how to DJ.');
+
+-- Guitar
+insert into guitar_merchant.product values('30', 'Squier Affinity Series Jazz Bass V, Maple Fingerboard, Olympic White', '8200000', '0', '20', '1', '9', 'https://utfs.io/f/25585962-f712-4f8a-8713-429cc853dcaa-p77mwd.png', 'The Fender Squier Affinity Jazz Bass V is a 5-string model with a thin and lightweight poplar body that provides a resonant and meaty tone as well as making it more comfortable to play.');
+insert into guitar_merchant.product values('31', 'Squier Classic Vibe 70s Precision Bass, Maple, Walnut', '11800000', '10', '12', '1', '9', 'https://utfs.io/f/75d581df-e17c-4777-8ac2-b22a7c17da32-p77mx8.png', 'A tribute to the 1970s evolution of the P Bass®, the Classic Vibe ‘70s Precision Bass embodies the aesthetics of the original and produces massive tone courtesy of its Fender-Designed alnico split-coil pickup.');
+insert into guitar_merchant.product values('32', 'Squier Sonic Precision Bass, Black', '5000000', '10', '12', '1', '9', 'https://utfs.io/f/dccc7201-adc7-40ab-abb2-e0a40f7f09f1-p77my3.png', 'As part of the Squier Sonic series, this superb bass guitar offers an ideal entry point for beginners seeking a high-quality instrument to being their musical journey.');
+
+-- Amplifier
+insert into guitar_merchant.product values('33', 'Fender 65 Princeton Reverb', '41000000', '17', '12', '5', '2', 'https://utfs.io/f/def6d99b-cc50-4701-bc6d-34150bad5aaf-p77myy.png', 'The legendary Fender Princeton Reverb Amp of the 1960s was small, light, and moderately powered. Though intended for practice situations, the Princeton was capable of Fender`s world-class Reverb and Vibrato effects are the icing on the cake.');
+insert into guitar_merchant.product values('34', 'Fender Acoustasonic 15 Acoustic Combo', '3200000', '0', '30', '5', '2', 'https://utfs.io/f/d1ec4515-59a1-4d2d-927d-d1b93ee70e78-p77mzt.png', 'The Acoustasonic 15 from Fender is the perfect acoustic guitar amplifier for home use or small gigs.');
+insert into guitar_merchant.product values('35', 'Boss Waza Craft 150W Amp Head, B-Stock', '39900000', '15', '8', '5', '10', 'https://utfs.io/f/e96e82b1-ad89-446a-81cd-bfe444f46641-p77nir.png', 'The BOSS Waza Amp Head is a rugged 150-watt amp born of the same innovative spirit used in pursuit of the ideal rock sound from the beginning of the rock era.');
+insert into guitar_merchant.product values('36', 'Boss ACS-LIVE Acoustic Singer Live Combo', '16500000', '14', '5', '5', '10', 'https://utfs.io/f/6c2aadc4-80ae-41e9-b017-54b9b8f7fe58-p77njm.png', 'The Acoustic Singer Live takes the acoustic stage amp to new levels of sound quality and creative versatility. This compact powerhouse produces rich, vibrant sound with unmatched punch and clarity.');
+insert into guitar_merchant.product values('37', 'Marshall 1987X Plexi Vintage Reissue 50W Valve Head', '46100000', '12', '29', '5', '11', 'https://utfs.io/f/61d7dd17-05b6-4613-b1e4-3c8148d04cbb-p77nkh.png', 'The Marshall 1987X Plexi Head gives you real tube-amp tone in perfect size for playing smaller clubs and venues and for recording and practice.');
+insert into guitar_merchant.product values('38', 'Marshall 2551BV Silver Jubilee Reissue 4x12 Straight Cab', '33000000', '14', '17', '5', '11', 'https://utfs.io/f/362aac4e-3768-44a2-a502-13452114c183-p77nlc.png', 'The Marshall 2551BV Silver Jubilee cab needs no introduction, harking back to 87s, a very special year for both Marshall Amplification, it marked 25 years in the Music Industry for Marshall amps.');
+insert into guitar_merchant.product values('39', 'Marshall DSL1CR 1W 1x8 Valve Combo with Reverb, Nearly New', '7300000', '0', '18', '5', '11', 'https://utfs.io/f/b74ba942-738e-4a39-940e-128a3c900f43-p77nm7.png', 'The DSL1C Combo features two footswitchable gain channels, allowing you to go from pure clean tones to aggressive gain in an instant. Its compact size makes it the perfect portable amp for bedroom guitarists.');
+
+-- Guitar
+insert into guitar_merchant.product values('40', 'Squier Limited Edition Classic Vibe 60s Telecaster Thinline, Gold Anodized Pickguard, Sonic Blue', '8500000', '15', '1', '1', '9', 'https://utfs.io/f/3518e4b0-f60d-451c-b067-03727e9c71f7-p77nn2.png', 'The Limited Edition Classic Vibe 60s Telecaster Thinline in Sonic Blue is filled with the nostalgia of an era renowned for its musical innovation, this guitar captures the vintage vibe perfectly.');
 
 

@@ -31,7 +31,6 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
     const router = useRouter();
     const cart = useCart();
     const categories = useInfoStore((state) => state.categories);
-    const brands = useInfoStore((state) => state.brands);
 
     const handleClick = () => {
         router.push(`/product/${data.id}`);
